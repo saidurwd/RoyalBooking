@@ -1,0 +1,70 @@
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\ApplicationInsights.config
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\csc.exe
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\System.Collections.Immutable.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\System.Reflection.Metadata.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\vbc.exe
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\VBCSCompiler.exe
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\VBCSCompiler.exe.config
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll.config
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.pdb
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
+D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.dll
+D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\ApplicationInsights.config
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\csc.exe
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\System.Collections.Immutable.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\System.Reflection.Metadata.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\vbc.exe
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\VBCSCompiler.exe
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\roslyn\VBCSCompiler.exe.config
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll.config
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\RoyalBooking.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\BQ.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Newtonsoft.Json.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\BQ.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\bin\Newtonsoft.Json.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.pdb
