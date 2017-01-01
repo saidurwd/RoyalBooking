@@ -160,7 +160,7 @@ namespace RoyalBooking
                         UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
                         objUpdate.UpdatePrebookDeleteStatus(objBQ);
 
-                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "PrebookId: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: "  + objBQ.DataFrom);
+                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "Number: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: "  + objBQ.DataFrom);
                     }
                 }
             }
