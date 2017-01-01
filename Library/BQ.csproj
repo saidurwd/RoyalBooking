@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="CreateLogFiles.cs" />
     <Compile Include="DC_BQ.cs" />
+    <Compile Include="DeleteKSPrebooks.cs" />
     <Compile Include="ImportKSPrebooks.cs" />
     <Compile Include="ImportKSVendorAvailability.cs" />
     <Compile Include="ImportKSProduct.cs" />

@@ -14,7 +14,7 @@
                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" placeholder="Username" required=""></asp:TextBox>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" required=""></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" required="" TextMode="Password"></asp:TextBox>
                         </div>
                         <div>
                             <asp:Label ID="lblErrorMessage" runat="server" Text="Label"></asp:Label>

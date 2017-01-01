@@ -19,8 +19,8 @@ namespace BQ
         public static string KSJOYDataFrom = "Joy";
 
         //public const string DB_STR = @"Data Source=.\BLUMENSOFT;Initial Catalog=BQ;Persist Security Info=True;User ID=sa;Password=sql@2012; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
-        //public const string DB_STR = @"Data Source=.\SQL2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2014; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
-        public const string DB_STR = @"Data Source=DESKTOP-AF7JH3R\MSSQLSERVER2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=SQL2014$$; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
+        public const string DB_STR = @"Data Source=.\SQL2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2014; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
+        //public const string DB_STR = @"Data Source=DESKTOP-AF7JH3R\MSSQLSERVER2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=SQL2014$$; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         //public const string DB_STR = @"Data Source=royal-dw01.database.windows.net;Initial Catalog=DataWarehouse;Persist Security Info=True;User ID=royaladmin@royal-dw01;Password=zxcasdQWE!@#; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         public static string AppName = "RFISales";
         public static string BQDataRegion = "101";
@@ -237,6 +237,32 @@ namespace BQ
             set
             {
                 p_SearchSrting = value;
+            }
+        }
+
+        private int p_productId = -1;
+        public int ProductId
+        {
+            get
+            {
+                return p_productId;
+            }
+            set
+            {
+                p_productId = value;
+            }
+        }
+
+        private int p_prebooks_Id = -1;
+        public int PrebooksId
+        {
+            get
+            {
+                return p_prebooks_Id;
+            }
+            set
+            {
+                p_prebooks_Id = value;
             }
         }
     }

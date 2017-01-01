@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
@@ -93,21 +94,16 @@ namespace RoyalBooking
             try
             {
                 BQ.DC_BQ objBQ = new BQ.DC_BQ();
-                //objBQ.SearchSrting = "Roses Red Freedom 40";
+                objBQ.KSToken = _KSToken;
                 objBQ.SearchSrting = txtdescription.Value;
                 objBQ.FromDate = txtDateFrom.Value;
                 objBQ.ToDate = txtDateTo.Value;
                 objBQ.DataFrom = _DataFrom;
 
-
-
-                DataTable dtdate = new DataTable();
-
                 ReadKSData objK = new BQ.ReadKSData();
                 DataSet ds = objK.ReadKSPrebooks(objBQ);
                 GridView1.DataSource = ds.Tables[0];
                 GridView1.DataBind();
-
             }
             catch (Exception exp)
             {
@@ -118,7 +114,61 @@ namespace RoyalBooking
 
             }
         }
+        private string CreateListOfItem2()
+        {
+            StringBuilder strServiceList = new StringBuilder();
+            foreach (GridViewRow gr in GridView1.Rows)
+            {
 
+                CheckBox _chkRow = gr.FindControl("chkRow") as CheckBox;
+                if (_chkRow.Checked == true)
+                {
+                    TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox;
+                    strServiceList.Append("" + _txtRefNo.Text + "");
+                    strServiceList.Append(",");
+                }
+            }
+            string strText = strServiceList.ToString();
+            if (strText.Length > 0)
+            {
+                strText = strText.Substring(0, strText.Length - 1);
+            }
+            return strText;
+
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox _chkRow = gr.FindControl("chkRow") as CheckBox;
+                    if (_chkRow.Checked == true)
+                    {
+                        TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox;
+                        TextBox _txtproductId = gr.FindControl("txtproductId") as TextBox;
+                        
+                        BQ.DC_BQ objBQ = new BQ.DC_BQ();
+                        objBQ.KSToken = BQ.DB_Base.KSRFIDomesticToken;
+                        objBQ.DataFrom = BQ.DB_Base.KSRFIDomesticDataFrom;
+                        objBQ.PrebooksId =Int32.Parse(_txtRefNo.Text);
+                        objBQ.ProductId = Int32.Parse(_txtproductId.Text);
+
+                        //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
+                        //DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "PrebookId: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: "  + objBQ.DataFrom);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", exp.ToString());
+            }
+            finally
+            {
+
+            }
+        }
         protected void CreateErrorLog(string _localLogPath, string _message)
         {
             BQ.CreateLogFiles Err = new BQ.CreateLogFiles();

@@ -476,3 +476,46 @@ D:\Microsoft\RoyalBooking\Library\bin\Debug\Zlib.Portable.xml
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.csproj.App.config
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.dll
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\BQ.dll.config
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\BQ.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\BQ.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Bigquery.v2.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Core.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.PlatformServices.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\log4net.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Newtonsoft.Json.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\OAuth2.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\RestSharp.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Http.Extensions.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Http.Primitives.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Zlib.Portable.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Bigquery.v2.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Bigquery.v2.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Core.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.Core.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.PlatformServices.pdb
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Google.Apis.PlatformServices.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\log4net.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Newtonsoft.Json.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\RestSharp.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Http.Extensions.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Http.Primitives.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Zlib.Portable.xml
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.csproj.App.config
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.dll
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.pdb

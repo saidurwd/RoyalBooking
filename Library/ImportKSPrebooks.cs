@@ -62,8 +62,8 @@ namespace BQ
             catch (Exception exp)
             {
                 sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
-                CreateErrorLog("CustomLogs/ErrorLogPO", sLogFormat + " : " + objBQ.FromDate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
-                CreateErrorLog("CustomLogs/ErrorLogPO", exp.ToString());
+                CreateErrorLog("CustomLogs/ErrorLogPrebookImport", sLogFormat + " : " + objBQ.FromDate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
+                CreateErrorLog("CustomLogs/ErrorLogPrebookImport", exp.ToString());
 
                 string strExceptionInEmail = sLogFormat + " : " + objBQ.FromDate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom + "<br><br>";
                 strExceptionInEmail += "Exception Details: <br>";
@@ -321,7 +321,7 @@ namespace BQ
 
             string sLogFormat = "";
             sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
-            CreateLogTime("CustomLogs/ExportLogPO", sLogFormat + " PO Ship Date: " + Truckdate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
+            CreateLogTime("CustomLogs/ErrorLogPrebookImport", sLogFormat + " PO Ship Date: " + Truckdate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
         }
         private DataSet DerializeDataTable(string str)
         {

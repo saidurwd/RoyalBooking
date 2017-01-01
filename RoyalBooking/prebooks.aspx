@@ -50,7 +50,9 @@
                                         <asp:TemplateField HeaderText="" ControlStyle-Width="5%">
                                             <ItemTemplate>
                                                 <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" />
-                                                <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("number") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("prebooks_Id") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtproductId" Text='<%#Eval("productId") %>' Style="display: none" />
+                                                
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
                                             <HeaderStyle HorizontalAlign="Center" Width="5%" />
@@ -63,7 +65,7 @@
                             </div>
                             <div class="form-group space-20">
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <button type="submit" class="btn btn-danger btn-lg btn-block">Delete</button>
+                                    <asp:Button ID="Button3" runat="server" Text="Delete" OnClick="btnDelete_Click" CssClass="btn btn-danger btn-lg btn-block" />
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
