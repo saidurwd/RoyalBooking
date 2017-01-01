@@ -340,7 +340,7 @@ namespace BQ
         public DataTable GetNewDuplicates()
         {
             string strSQL = @"
-                             SELECT invoice_number 'Order#', [source] 'Company', old_shipdate 'Old Ship Date', new_shipdate 'New Ship Date', insert_date 'Process On' from duplicate_invoices where status=1;
+                             SELECT number 'Order#', [source] 'Company', old_truckDate 'Old Ship Date', new_truckDate 'New Ship Date', insert_date 'Process On' from Prebooks_duplicates where status=1;
                                 ";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);

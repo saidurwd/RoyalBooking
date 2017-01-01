@@ -433,3 +433,46 @@ E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\
 E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\obj\Debug\BQ.csprojResolveAssemblyReference.cache
 E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\obj\Debug\BQ.dll
 E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\obj\Debug\BQ.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\BQ.dll.config
+D:\Microsoft\RoyalBooking\Library\bin\Debug\BQ.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\BQ.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Bigquery.v2.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Core.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.PlatformServices.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\log4net.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Newtonsoft.Json.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\OAuth2.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\RestSharp.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Extensions.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Primitives.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Zlib.Portable.dll
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Bigquery.v2.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Bigquery.v2.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Core.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.Core.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.PlatformServices.pdb
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Google.Apis.PlatformServices.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\log4net.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Newtonsoft.Json.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\RestSharp.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Extensions.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Primitives.xml
+D:\Microsoft\RoyalBooking\Library\bin\Debug\Zlib.Portable.xml
+D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.csproj.App.config
+D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.dll
+D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.pdb
