@@ -3,9 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-    <asp:Button ID="Button1" runat="server" Text="Import Prebooks" OnClick="Button1_Click" />
+    <form id="form1" runat="server">    
     <div class="">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <asp:Button ID="Button1" runat="server" Text="Import Prebooks" OnClick="Button1_Click" CssClass="btn btn-primary pull-right" />
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">

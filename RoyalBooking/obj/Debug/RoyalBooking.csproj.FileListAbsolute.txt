@@ -51,7 +51,6 @@ D:\Microsoft\RoyalBooking\RoyalBooking\bin\roslyn\VBCSCompiler.exe.config
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll.config
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\RoyalBooking.pdb
-D:\Microsoft\RoyalBooking\RoyalBooking\bin\BQ.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Agent.Intercept.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -60,15 +59,12 @@ D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Microsoft\RoyalBooking\RoyalBooking\bin\Newtonsoft.Json.dll
-D:\Microsoft\RoyalBooking\RoyalBooking\bin\BQ.pdb
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.DependencyCollector.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.Web.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.AI.WindowsServer.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.ApplicationInsights.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Microsoft\RoyalBooking\RoyalBooking\bin\Newtonsoft.Json.xml
 D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
 D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.dll
 D:\Microsoft\RoyalBooking\RoyalBooking\obj\Debug\RoyalBooking.pdb

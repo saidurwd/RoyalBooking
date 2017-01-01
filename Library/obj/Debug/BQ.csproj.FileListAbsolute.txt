@@ -474,5 +474,6 @@ D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Extensions.xml
 D:\Microsoft\RoyalBooking\Library\bin\Debug\System.Net.Http.Primitives.xml
 D:\Microsoft\RoyalBooking\Library\bin\Debug\Zlib.Portable.xml
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.csproj.App.config
+D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.csprojResolveAssemblyReference.cache
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.dll
 D:\Microsoft\RoyalBooking\Library\obj\Debug\BQ.pdb
