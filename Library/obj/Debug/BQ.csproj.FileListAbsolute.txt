@@ -517,5 +517,6 @@ E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Ht
 E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\System.Net.Http.Primitives.xml
 E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\bin\Debug\Zlib.Portable.xml
 E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.csproj.App.config
+E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.csprojResolveAssemblyReference.cache
 E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.dll
 E:\Activities\6. Efren Castillo\RoyalBooking\git\Library\obj\Debug\BQ.pdb

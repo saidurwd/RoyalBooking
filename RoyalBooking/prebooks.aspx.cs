@@ -29,8 +29,8 @@ namespace RoyalBooking
         protected void ImportPrebooks(string _KSToken, string _DataFrom)
         {
 
-            string FromDate = "12/25/2016";
-            string ToDate = "12/30/2016";
+            string FromDate = txtDateFrom.Value;// "12/25/2016";
+            string ToDate = txtDateTo.Value; //"12/30/2016";
             //try
             //{
             BQ.DC_BQ objBQ = new BQ.DC_BQ();
@@ -156,6 +156,10 @@ namespace RoyalBooking
 
                         //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         //DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+
+                        UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+                        objUpdate.UpdatePrebookDeleteStatus(objBQ);
+
                         CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "PrebookId: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: "  + objBQ.DataFrom);
                     }
                 }

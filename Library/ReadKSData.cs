@@ -208,9 +208,10 @@ namespace BQ
                             SELECT P.prebooks_Id, P.number, CONVERT(varchar(10), P.truckDate,101) truckDate, P.customerName, D.productId
                             FROM dbo." + objBQ.DataFrom + @"_KS_Prebooks P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_KS_PrebooksDetails D on P.prebooks_Id=D.prebooks_Id
-                            where D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") +@"%' 
-                                AND truckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion +@") 
-                                and truckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion +@") ";
+                            WHERE truckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND truckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") +@"%' 
+                                ";
 
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);
