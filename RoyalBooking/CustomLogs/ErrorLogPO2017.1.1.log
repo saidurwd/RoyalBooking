@@ -1,0 +1,169 @@
+ ======== 1/1/2017 3:19:22 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.IndexOutOfRangeException: Cannot find table 3.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 290
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:21:00 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.IndexOutOfRangeException: Cannot find table 3.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 290
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:22:03 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.IndexOutOfRangeException: Cannot find table 3.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 290
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:22:56 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.IndexOutOfRangeException: Cannot find table 3.
+   at System.Data.DataTableCollection.get_Item(Int32 index)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 290
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:24:28 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.InvalidOperationException: The given value of type String from the data source cannot be converted to type float of the specified target column. ---> System.FormatException: Failed to convert parameter value from a String to a Double. ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.String.System.IConvertible.ToDouble(IFormatProvider provider)
+   at System.Convert.ChangeType(Object value, Type conversionType, IFormatProvider provider)
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   at System.Data.SqlClient.SqlBulkCopy.ReadWriteColumnValueAsync(Int32 col)
+   at System.Data.SqlClient.SqlBulkCopy.CopyColumnsAsync(Int32 col, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table, DataRowState rowState)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 309
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:34:38 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.Data.SqlClient.SqlException (0x80131904): The multi-part identifier "KS_PreBooks_Summary.prebooks_Id" could not be bound.
+The multi-part identifier "KS_PreBooks_Summary.number" could not be bound.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 376
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ClientConnectionId:94bda7b4-cea6-4698-8a4d-5ef9e579bc6f
+Error Number:4104,State:1,Class:16
+ ======== 1/1/2017 3:35:27 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.Data.SqlClient.SqlException (0x80131904): The multi-part identifier "KS_PreBooks_Summary.prebooks_Id" could not be bound.
+The multi-part identifier "KS_PreBooks_Summary.number" could not be bound.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 376
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ClientConnectionId:380f650a-5836-40fb-8e48-8ba6f253a927
+Error Number:4104,State:1,Class:16
+ ======== 1/1/2017 3:36:19 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.Data.SqlClient.SqlException (0x80131904): The multi-part identifier "KS_PreBooks_Summary.prebooks_Id" could not be bound.
+The multi-part identifier "KS_PreBooks_Summary.number" could not be bound.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 376
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ClientConnectionId:94bda7b4-cea6-4698-8a4d-5ef9e579bc6f
+Error Number:4104,State:1,Class:16
+ ======== 1/1/2017 3:40:38 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.InvalidOperationException: The given value of type String from the data source cannot be converted to type float of the specified target column. ---> System.FormatException: Failed to convert parameter value from a String to a Double. ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.String.System.IConvertible.ToDouble(IFormatProvider provider)
+   at System.Convert.ChangeType(Object value, Type conversionType, IFormatProvider provider)
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   at System.Data.SqlClient.SqlBulkCopy.ReadWriteColumnValueAsync(Int32 col)
+   at System.Data.SqlClient.SqlBulkCopy.CopyColumnsAsync(Int32 col, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table, DataRowState rowState)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 309
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 1/1/2017 3:41:29 PM ========  : 12-30-2016 : Domestic : Monthly Sales
+System.InvalidOperationException: The given value of type String from the data source cannot be converted to type float of the specified target column. ---> System.FormatException: Failed to convert parameter value from a String to a Double. ---> System.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.String.System.IConvertible.ToDouble(IFormatProvider provider)
+   at System.Convert.ChangeType(Object value, Type conversionType, IFormatProvider provider)
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+   at System.Data.SqlClient.SqlBulkCopy.ReadWriteColumnValueAsync(Int32 col)
+   at System.Data.SqlClient.SqlBulkCopy.CopyColumnsAsync(Int32 col, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource`1 source)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table, DataRowState rowState)
+   at System.Data.SqlClient.SqlBulkCopy.WriteToServer(DataTable table)
+   at BQ.ImportKSPrebooks.SaveInvoiceInTempTable(DataSet _ds, String Truckdate, DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 309
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in E:\Activities\6. Efren Castillo\RoyalBooking\RoyalBooking1\RoyalBooking\Library\ImportKSPrebooks.cs:line 53
+ ======== 01/01/2017 6:51:24 PM ========  : 12-25-2016 : Domestic : Import Prebook Date Duration
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'duplicate_invoices'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at BQ.ReadKSData.GetNewDuplicates() in D:\Microsoft\RoyalBooking\Library\ReadKSData.cs:line 350
+   at BQ.ImportKSPrebooks.SendmailIfDuplicate() in D:\Microsoft\RoyalBooking\Library\ImportKSPrebooks.cs:line 422
+   at BQ.ImportKSPrebooks.ImportKSPrebooksDataForAzure(DC_BQ objBQ) in D:\Microsoft\RoyalBooking\Library\ImportKSPrebooks.cs:line 54
+ClientConnectionId:4b48898d-1936-4968-b6eb-152e0f2c7544
+Error Number:208,State:1,Class:16
