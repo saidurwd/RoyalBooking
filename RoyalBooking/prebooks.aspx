@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                        <input class="form-control has-feedback-left" id="txtdescription" placeholder="" type="text" runat="server">
+                        <input class="form-control has-feedback-left" id="txtdescription" placeholder="Product Description" type="text" runat="server">
                     </div>
                     <div class="col-md-5 col-sm-5 col-xs-12 form-group"></div>
                     <div class="col-md-2 col-sm-2 col-xs-12 form-group">

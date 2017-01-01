@@ -14,7 +14,7 @@
                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" placeholder="Username" required=""></asp:TextBox>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="UsernamePassword" required=""></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" required=""></asp:TextBox>
                         </div>
                         <div>
                             <asp:Label ID="lblErrorMessage" runat="server" Text="Label"></asp:Label>
@@ -27,7 +27,7 @@
                             <br />
                             <div>
                                 <h1>Royal Booking!</h1>
-                                <p>Copyright © 2016 Royal Booking. All rights reserved.</p>
+                                <p>Copyright © 2016 Aphix Inc. All rights reserved.</p>
                             </div>
                         </div>
                     </form>
