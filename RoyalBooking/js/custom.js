@@ -278,7 +278,7 @@ if (typeof NProgress != 'undefined') {
     });
 }
 
-$('#single_cal1').daterangepicker({
+$('.hasDatePicker').daterangepicker({
     singleDatePicker: true,
     singleClasses: "picker_3"
 }, function (start, end, label) {

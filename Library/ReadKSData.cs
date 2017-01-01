@@ -30,9 +30,9 @@ namespace BQ
             DataSet ds = GetCreditQueryResult();
             return ds;
         }
-        public DataSet ReadCreditData(string invoice_number)
+        public DataSet ReadKSPrebooks(DC_BQ objBQ)
         {
-            DataSet ds = GetCreditQueryResult(invoice_number);
+            DataSet ds = GetPrebooksQueryResult(objBQ);
             return ds;
         }
         public DataSet GetInvoiceQueryResult()
@@ -202,32 +202,18 @@ namespace BQ
             return dt;
 
         }
-        public DataSet GetCreditQueryResult(string invoice_number)
+        private DataSet GetPrebooksQueryResult(DC_BQ objBQ)
         {
-
             string strSQL = @"
-                             SELECT     
-                                id, number as invoice_number, isnull(customerId,0) customerId, customerName, 
-                                CONVERT(VARCHAR(30), shipDate, 121) shipDate, 
-                                carrierId, carrierName, isnull(salesPersonId,0) salesPersonId, 
-                                salesPersonName, locationName, customerPONumber, 
-                                isnull(totalBoxesOrder,0) totalBoxesOrder, isnull(totalOrder,0) totalOrder, 
-                                isnull(totalCredit,0) totalCredit, isnull(returnedTax,0) returnedTax, credits_Id, 
-                                rootNode_Id, isnull(locationId,0) locationId, status, system_name
-                            FROM         
-                                creditHeader where number=" + invoice_number+ @";
-                            SELECT    
-                                detailId, awb, productId, productDescription, growerId, growerName, boxTypeId, boxType, 
-                                isnull(quantityBoxes,0) quantityBoxes, isnull(flowerSales,0) flowerSales, 
-                                isnull(creditUnits,0) creditUnits, isnull(creditAmount,0) creditAmount, 
-                                isnull(creditFreight,0) creditFreight, creditReasons, credits_Id, invoice_number, status, system_name
-                            FROM 
-                                creditDetails where invoice_number=" + invoice_number + @";
-                            SELECT    
-                                comment, createdBy, CONVERT(VARCHAR(30), createdOn, 121) createdOn, credits_Id, invoice_number, status, system_name
-                            FROM         
-                                creditComments where invoice_number=" + invoice_number + @";
-                                ";
+                            SELECT P.number, P.truckDate, P.customerName
+                            FROM dbo." + objBQ.DataFrom + @"_KS_Prebooks P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_KS_PrebooksDetails D on P.prebooks_Id=D.prebooks_Id
+                            where D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") +
+                            "%' AND truckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion +
+                            @") 
+                                and truckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion +
+                            @") ";
+
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);
             con.Open();

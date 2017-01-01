@@ -226,5 +226,18 @@ namespace BQ
                 p_CallFrom = value;
             }
         }
+
+        private string p_SearchSrting = String.Empty;
+        public string SearchSrting
+        {
+            get
+            {
+                return p_SearchSrting;
+            }
+            set
+            {
+                p_SearchSrting = value;
+            }
+        }
     }
 }

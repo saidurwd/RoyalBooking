@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BQ;
 
 
 namespace RoyalBooking
@@ -64,7 +65,7 @@ namespace RoyalBooking
 
                     objK = new BQ.ImportKSPrebooks();
                     DataSet ds = objK.ImportKSPrebooksDataForAzure(objBQ);
-                    
+
                 }
             }
             //}
@@ -79,6 +80,45 @@ namespace RoyalBooking
 
             //}
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+            //Read Prebooks
+            ReradKSPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
+        }
+
+        protected void ReradKSPrebooks(string _KSToken, string _DataFrom)
+        {
+            try
+            {
+                BQ.DC_BQ objBQ = new BQ.DC_BQ();
+                //objBQ.SearchSrting = "Roses Red Freedom 40";
+                objBQ.SearchSrting = txtdescription.Value;
+                objBQ.FromDate = txtDateFrom.Value;
+                objBQ.ToDate = txtDateTo.Value;
+                objBQ.DataFrom = _DataFrom;
+
+
+
+                DataTable dtdate = new DataTable();
+
+                ReadKSData objK = new BQ.ReadKSData();
+                DataSet ds = objK.ReadKSPrebooks(objBQ);
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+
+            }
+            catch (Exception exp)
+            {
+                CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
+            }
+            finally
+            {
+
+            }
+        }
+
         protected void CreateErrorLog(string _localLogPath, string _message)
         {
             BQ.CreateLogFiles Err = new BQ.CreateLogFiles();
