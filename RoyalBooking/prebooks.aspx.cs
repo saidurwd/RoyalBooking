@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 using BQ;
 
 
@@ -23,8 +24,10 @@ namespace RoyalBooking
         protected void Button1_Click(object sender, EventArgs e)
         {
             //Prebooks - Date Duration
-            ImportPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
+            //ImportPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
             //ImportPrebooks(BQ.DB_Base.KSRFIInternationalToken, BQ.DB_Base.KSRFIInternationalDataFrom);
+
+            ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
         }
         protected void ImportPrebooks(string _KSToken, string _DataFrom)
         {
@@ -67,6 +70,15 @@ namespace RoyalBooking
                     objK = new BQ.ImportKSPrebooks();
                     DataSet ds = objK.ImportKSPrebooksDataForAzure(objBQ);
 
+                    string validationfile = "";
+                    validationfile = ExportToExcel(ds.Tables[1], "prebooks");
+                    validationfile = ExportToExcel(ds.Tables[2], "details");
+
+                    if (ds.Tables.Contains("breakdowns"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+                    }
+
                 }
             }
             //}
@@ -86,10 +98,11 @@ namespace RoyalBooking
         {
 
             //Read Prebooks
-            ReradKSPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
+            //ReadKSPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
+            ReadKSPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
         }
 
-        protected void ReradKSPrebooks(string _KSToken, string _DataFrom)
+        protected void ReadKSPrebooks(string _KSToken, string _DataFrom)
         {
             try
             {
@@ -113,6 +126,41 @@ namespace RoyalBooking
             {
 
             }
+        }
+        private string ExportToExcel(DataTable dt, string filename)
+        {
+            DateTime dte = DateTime.Now;
+            int Year = dte.Year;
+            int Month = dte.Month;
+            int Date = dte.Day;
+            int Hour = dte.Hour;
+            int Minute = dte.Minute;
+            int Second = dte.Second;
+            string FileDate = Year.ToString() + "-" + Month.ToString() + "-" + Date.ToString() + " " + Hour.ToString() + " " + Minute.ToString() + " " + Second.ToString();
+            filename = filename + "-" + FileDate;
+            filename = filename.Replace(" ", "_");
+
+            if (dt.Rows.Count > 0)
+            {
+                System.Web.UI.WebControls.DataGrid grid =
+                            new System.Web.UI.WebControls.DataGrid();
+                grid.HeaderStyle.Font.Bold = true;
+                grid.DataSource = dt;
+
+
+                grid.DataBind();
+                string strFilePath = path + "logs/" + filename + ".xls";
+
+                using (StreamWriter sw = new StreamWriter(strFilePath))
+                {
+                    using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                    {
+                        grid.RenderControl(hw);
+                    }
+                }
+
+            }
+            return filename + ".xls";
         }
         private string CreateListOfItem2()
         {
@@ -147,20 +195,22 @@ namespace RoyalBooking
                     {
                         TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox;
                         TextBox _txtproductId = gr.FindControl("txtproductId") as TextBox;
-                        
+
                         BQ.DC_BQ objBQ = new BQ.DC_BQ();
-                        objBQ.KSToken = BQ.DB_Base.KSRFIDomesticToken;
-                        objBQ.DataFrom = BQ.DB_Base.KSRFIDomesticDataFrom;
-                        objBQ.PrebooksId =Int32.Parse(_txtRefNo.Text);
+                        objBQ.KSToken = BQ.DB_Base.KSDemoToken;
+                        objBQ.DataFrom = BQ.DB_Base.KSDemoDataFrom;
+                        objBQ.PrebooksId = Int32.Parse(_txtRefNo.Text);
                         objBQ.ProductId = Int32.Parse(_txtproductId.Text);
 
-                        //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
-                        //DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+                        DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
+                        DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+                        if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                        {
+                            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                        }
 
-                        UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
-                        objUpdate.UpdatePrebookDeleteStatus(objBQ);
-
-                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "Number: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: "  + objBQ.DataFrom);
+                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "Number: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: " + objBQ.DataFrom);
                     }
                 }
             }

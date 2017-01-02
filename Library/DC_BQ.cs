@@ -12,11 +12,14 @@ namespace BQ
         public static string KSRFIInternationalToken = "s8jm0u6ds3jrg85e5p77okl11n";
         public static string KSRFGToken = "ofleftucl52u19r2c0pqff0jkr";
         public static string KSJOYToken = "7oa8s7ljmj2jgtgqios2a4d9vv";
+        public static string KSDemoToken = "c798b3kff1cq1if1q2dni3h46m";
+        
 
         public static string KSRFIDomesticDataFrom = "Domestic";
         public static string KSRFIInternationalDataFrom = "International";
         public static string KSRFGDataFrom = "RFG";
         public static string KSJOYDataFrom = "Joy";
+        public static string KSDemoDataFrom = "Demo";
 
         //public const string DB_STR = @"Data Source=.\BLUMENSOFT;Initial Catalog=BQ;Persist Security Info=True;User ID=sa;Password=sql@2012; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         public const string DB_STR = @"Data Source=.\SQL2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2014; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";

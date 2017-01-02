@@ -50,8 +50,8 @@
                                         <asp:TemplateField HeaderText="" ControlStyle-Width="5%">
                                             <ItemTemplate>
                                                 <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" />
-                                                <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("number") %>' Style="display: none" />
-                                                <asp:TextBox runat="server" ID="txtproductId" Text='<%#Eval("productId") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("Id") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtproductId" Text='<%#Eval("prebookItemId") %>' Style="display: none" />
                                                 
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
