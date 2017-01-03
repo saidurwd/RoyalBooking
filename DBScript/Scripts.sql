@@ -294,6 +294,7 @@ CREATE TABLE [dbo].[Demo_KS_PrebooksBreakDowns](
 	[number] [float] NULL,
 	[prebooks_Id] [float] NULL
 )
+drop table dbo.Prebook_Delete_Log;
 
 CREATE TABLE dbo.Prebook_Delete_Log(
 	id int identity(1,1) primary key,
@@ -301,5 +302,7 @@ CREATE TABLE dbo.Prebook_Delete_Log(
 	PrebookItemId int,
 	number varchar(50),
 	[productDescription] [nvarchar](255) NULL,
-	[source] [varchar](500) NULL
+	[source] [varchar](500) NULL,
+	[truckDate] [datetime] NULL
 )
+
