@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
-                                <asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx?id=1" runat="server">
+                                <asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx?cid=1" runat="server">
                                     <img class="img-responsive" alt="" src="../images/logo.png">
                                 </asp:HyperLink>
                             </div>
@@ -21,7 +21,7 @@
                         <div class="col-sm-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <div class="caption" style="margin-top: 10px;">
-                                    <asp:HyperLink ID="HyperLink1" NavigateUrl="~/index.aspx?id=1" runat="server" CssClass="btn btn-primary btn-lg btn-block">
+                                    <asp:HyperLink ID="HyperLink1" NavigateUrl="~/index.aspx?cid=1" runat="server" CssClass="btn btn-primary btn-lg btn-block">
                                         Royal Flowers Inc. Domestic
                                     </asp:HyperLink>
                                 </div>
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
-                                <asp:HyperLink ID="HyperLink5" NavigateUrl="~/index.aspx?id=1" runat="server">
+                                <asp:HyperLink ID="HyperLink5" NavigateUrl="~/index.aspx?cid=2" runat="server">
                                     <img class="img-responsive" alt="" src="../images/logo.png">
                                 </asp:HyperLink>
                             </div>
@@ -39,7 +39,7 @@
                         <div class="col-sm-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <div class="caption" style="margin-top: 10px;">
-                                    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx?id=2" runat="server" CssClass="btn btn-primary btn-lg btn-block">
+                                    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx?cid=2" runat="server" CssClass="btn btn-primary btn-lg btn-block">
                                         Royal Flowers Inc. International
                                     </asp:HyperLink>
                                 </div>
@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
-                                <asp:HyperLink ID="HyperLink6" NavigateUrl="~/index.aspx?id=1" runat="server">
+                                <asp:HyperLink ID="HyperLink6" NavigateUrl="~/index.aspx?cid=3" runat="server">
                                     <img class="img-responsive" alt="" src="../images/logo.png">
                                 </asp:HyperLink>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="col-sm-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <div class="caption" style="margin-top: 10px;">
-                                    <asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx?id=3" runat="server" CssClass="btn btn-primary btn-lg btn-block">
+                                    <asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx?cid=3" runat="server" CssClass="btn btn-primary btn-lg btn-block">
                                         Royal Flowers GmbH
                                     </asp:HyperLink>
                                 </div>

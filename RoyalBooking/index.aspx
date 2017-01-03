@@ -6,7 +6,8 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Welcome to Royal Booking</h3>
+                <h3>Welcome to
+                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label></h3>
             </div>
         </div>
     </div>

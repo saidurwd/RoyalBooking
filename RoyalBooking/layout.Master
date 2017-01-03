@@ -84,7 +84,11 @@
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-
+                        <ul class="nav navbar-nav navbar-left" style="margin-top:20px;">
+                            <li>
+                                <asp:Label ID="lblCompanyName" runat="server" Text="Label" Font-Size="Large"></asp:Label>
+                            </li>
+                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
