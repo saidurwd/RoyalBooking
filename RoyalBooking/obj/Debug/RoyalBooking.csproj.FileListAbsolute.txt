@@ -109,7 +109,6 @@ E:\Activities\6. Efren Castillo\RoyalBooking\git\RoyalBooking\bin\Newtonsoft.Jso
 E:\Activities\6. Efren Castillo\RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
 E:\Activities\6. Efren Castillo\RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.dll
 E:\Activities\6. Efren Castillo\RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.pdb
-E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\ApplicationInsights.config
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\roslyn\csc.exe
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -144,5 +143,6 @@ E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\Microsoft.AI
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\Microsoft.ApplicationInsights.xml
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\bin\Newtonsoft.Json.xml
+E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.csprojResolveAssemblyReference.cache
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.dll
 E:\Activities\6. Efren Castillo\1 RoyalBooking\git\RoyalBooking\obj\Debug\RoyalBooking.pdb

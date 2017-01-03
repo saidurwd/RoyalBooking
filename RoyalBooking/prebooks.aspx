@@ -52,6 +52,9 @@
                                                 <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" />
                                                 <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("Id") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtproductId" Text='<%#Eval("prebookItemId") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtNumber" Text='<%#Eval("number") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtProductDescription" Text='<%#Eval("productDescription") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtTruckDate" Text='<%#Eval("truckDate") %>' Style="display: none" />
                                                 
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />

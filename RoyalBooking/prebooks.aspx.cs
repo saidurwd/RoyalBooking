@@ -186,6 +186,7 @@ namespace RoyalBooking
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            string sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
             try
             {
                 foreach (GridViewRow gr in GridView1.Rows)
@@ -195,6 +196,10 @@ namespace RoyalBooking
                     {
                         TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox;
                         TextBox _txtproductId = gr.FindControl("txtproductId") as TextBox;
+                        
+                        TextBox _txtNumber = gr.FindControl("txtNumber") as TextBox;
+                        TextBox _txtProductDescription = gr.FindControl("txtProductDescription") as TextBox;
+                        TextBox _txtTruckDate = gr.FindControl("txtTruckDate") as TextBox;
 
                         BQ.DC_BQ objBQ = new BQ.DC_BQ();
                         objBQ.KSToken = BQ.DB_Base.KSDemoToken;
@@ -202,15 +207,20 @@ namespace RoyalBooking
                         objBQ.PrebooksId = Int32.Parse(_txtRefNo.Text);
                         objBQ.ProductId = Int32.Parse(_txtproductId.Text);
 
+                        objBQ.InvoiceNumber = _txtNumber.Text;
+                        objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
+                        objBQ.ProcessDay = _txtTruckDate.Text;
+
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-                        if (ds.Tables[0].Rows[0][0].ToString() == "1")
+
+                        if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {
                             UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
                             objUpdate.UpdatePrebookDeleteStatus(objBQ);
                         }
 
-                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", "Number: " + _txtRefNo.Text + " Product Id:" + _txtproductId.Text + " Data From: " + objBQ.DataFrom);
+                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", sLogFormat+ " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
                     }
                 }
             }
