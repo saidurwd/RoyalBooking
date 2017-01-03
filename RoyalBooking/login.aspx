@@ -17,7 +17,7 @@
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Password" required="" TextMode="Password"></asp:TextBox>
                         </div>
                         <div>
-                            <asp:Label ID="lblErrorMessage" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="lblErrorMessage" runat="server" Text=""></asp:Label>
                         </div>
                         <div>
                             <asp:Button ID="ButtonLogin" runat="server" CssClass="btn btn-default submit" Text="Log in" OnClick="ButtonLogin_Click" />
