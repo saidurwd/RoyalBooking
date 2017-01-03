@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="../favicon/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon/favicon/favicon.ico" type="image/x-icon">
 
-    <title>Royal Booking - Login</title>
+    <title>Royal Booking</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
