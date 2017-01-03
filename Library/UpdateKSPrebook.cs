@@ -19,7 +19,7 @@ namespace BQ
         {
             string strSQL = @"UPDATE " + objBQ.DataFrom + "_KS_PrebooksDetails SET DeleteStatus=1 WHERE prebookItemId=" + objBQ.ProductId+ @"
                 INSERT INTO dbo.Prebook_Delete_Log(PrebookId,PrebookItemId,number,productDescription, [source], truckDate) VALUES(
-                "+ objBQ.PrebooksId + ", "+ objBQ.ProductId + ", '"+ objBQ.InvoiceNumber + "', '"+ objBQ.SearchSrting + "','"+ objBQ.DataFrom + "',convert(datetime,'" + objBQ.ProcessDay + @"', " + BQ.DB_Base.BQDataRegion + @")
+                "+ objBQ.PrebooksId + ", "+ objBQ.ProductId + ", '"+ objBQ.InvoiceNumber + "', '"+ objBQ.SearchSrting.Replace("'","''") + "','"+ objBQ.DataFrom + "',convert(datetime,'" + objBQ.ProcessDay + @"', " + BQ.DB_Base.BQDataRegion + @")
             )
             ";
 
