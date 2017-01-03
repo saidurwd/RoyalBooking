@@ -205,7 +205,7 @@ namespace BQ
         private DataSet GetPrebooksQueryResult(DC_BQ objBQ)
         {
             string strSQL = @"
-                            SELECT P.Id, D.prebookItemId, P.number, CONVERT(varchar(10), P.truckDate,101) truckDate, P.customerName, D.productId
+                            SELECT P.Id, D.prebookItemId, P.number, CONVERT(varchar(10), P.truckDate,101) truckDate, P.customerName, D.productDescription
                             FROM dbo." + objBQ.DataFrom + @"_KS_Prebooks P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_KS_PrebooksDetails D on P.number=D.number
                             WHERE truckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
