@@ -118,62 +118,62 @@ namespace BQ
         }
         private DataSet DeletePO(DC_BQ objBQ)
         {
-            //DataSet ds = null;
-            //string KSToken = objBQ.KSToken;
-
-            //var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete");
-            //httpWebRequest.ContentType = "application/json";
-            //httpWebRequest.Method = "POST";
-
-            //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            //{
-            //    string json = new JavaScriptSerializer().Serialize(new
-            //    {
-            //        authenticationToken = "" + KSToken + "",
-            //        poItemId = "" + objBQ.poItemId + ""
-            //    });
-
-            //    streamWriter.Write(json);
-            //}
-
-            //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            //{
-            //    var result = streamReader.ReadToEnd();
-            //    ds = DerializeDataTable(result);
-            //}
-
-            //return ds;
-
             DataSet ds = null;
             string KSToken = objBQ.KSToken;
-            Uri uri = new Uri("https://api.kometsales.com/api/purchase.order.item.delete");
-            if (uri.Scheme == Uri.UriSchemeHttps)
-            {
-                try
-                {
-                    string result = "";
-                    // Create the web request  
-                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete?authenticationToken=" + KSToken + "&poItemId=" + objBQ.poItemId + "") as HttpWebRequest;
-                    request.Method = "POST";
-                    request.ContentType = "application/json";
-                    // Get response  
-                    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                    {
-                        // Get the response stream  
-                        StreamReader reader = new StreamReader(response.GetResponseStream());
-                        // Read the whole contents and return as a string  
-                        result = reader.ReadToEnd();
-                        ds = DerializeDataTable(result);
-                    }
-                }
-                catch (Exception exp)
-                { }
-                finally
-                { }
 
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = new JavaScriptSerializer().Serialize(new
+                {
+                    authenticationToken = "" + KSToken + "",
+                    poItemId = "" + objBQ.poItemId + ""
+                });
+
+                streamWriter.Write(json);
             }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                ds = DerializeDataTable(result);
+            }
+
             return ds;
+
+            //DataSet ds = null;
+            //string KSToken = objBQ.KSToken;
+            //Uri uri = new Uri("https://api.kometsales.com/api/purchase.order.item.delete");
+            //if (uri.Scheme == Uri.UriSchemeHttps)
+            //{
+            //    try
+            //    {
+            //        string result = "";
+            //        // Create the web request  
+            //        HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete?authenticationToken=" + KSToken + "&poItemId=" + objBQ.poItemId + "") as HttpWebRequest;
+            //        request.Method = "POST";
+            //        request.ContentType = "application/json";
+            //        // Get response  
+            //        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            //        {
+            //            // Get the response stream  
+            //            StreamReader reader = new StreamReader(response.GetResponseStream());
+            //            // Read the whole contents and return as a string  
+            //            result = reader.ReadToEnd();
+            //            ds = DerializeDataTable(result);
+            //        }
+            //    }
+            //    catch (Exception exp)
+            //    { }
+            //    finally
+            //    { }
+
+            //}
+            //return ds;
         }
         protected void CreateLogTime(string _localLogPath, string _message)
         {
