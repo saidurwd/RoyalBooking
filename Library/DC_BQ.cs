@@ -268,5 +268,18 @@ namespace BQ
                 p_prebooks_Id = value;
             }
         }
+        
+        private int p_poItemId = -1;
+        public int poItemId
+        {
+            get
+            {
+                return p_poItemId;
+            }
+            set
+            {
+                p_poItemId = value;
+            }
+        }
     }
 }

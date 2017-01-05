@@ -16,7 +16,7 @@
                         <input class="form-control has-feedback-left" id="txtdescription" placeholder="Product Description" type="text" runat="server">
                     </div>
                     <div class="col-md-5 col-sm-5 col-xs-12 form-group"></div>
-                    <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                    <div class="col-md-2 col-sm-2 col-xs-12 form-group"> Prebook Truck Date: 
                         <input class="form-control has-feedback-left hasDatePicker" id="txtDateFrom" placeholder="Start" aria-describedby="inputSuccess1Status1" type="text" runat="server">
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         <span id="inputSuccess1Status1" class="sr-only">(success)</span>
@@ -51,8 +51,11 @@
                                             <ItemTemplate>
                                                 <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" />
                                                 <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("Id") %>' Style="display: none" />
-                                                <asp:TextBox runat="server" ID="txtproductId" Text='<%#Eval("prebookItemId") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtprebookItemId" Text='<%#Eval("prebookItemId") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtNumber" Text='<%#Eval("number") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtprebook" Text='<%#Eval("prebook") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtpoItemId" Text='<%#Eval("poItemId") %>' Style="display: none" />
+                                                
                                                 <asp:TextBox runat="server" ID="txtProductDescription" Text='<%#Eval("productDescription") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtTruckDate" Text='<%#Eval("truckDate") %>' Style="display: none" />
                                                 
@@ -60,8 +63,9 @@
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
                                             <HeaderStyle HorizontalAlign="Center" Width="5%" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="number" HeaderText="Prebook" SortExpression="number" />
-                                        <asp:BoundField DataField="truckDate" HeaderText="Date" SortExpression="truckDate" />
+                                        <asp:BoundField DataField="number" HeaderText="PO" SortExpression="number" />
+                                        <asp:BoundField DataField="shipDate" HeaderText="PO Date" SortExpression="shipDate" />
+                                        <asp:BoundField DataField="truckDate" HeaderText="Prebook Date" SortExpression="truckDate" />
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
                                     </Columns>
                                 </asp:GridView>

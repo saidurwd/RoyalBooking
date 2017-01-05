@@ -205,12 +205,12 @@ namespace BQ
         private DataSet GetPrebooksQueryResult(DC_BQ objBQ)
         {
             string strSQL = @"
-                            SELECT P.Id, D.prebookItemId, P.number, CONVERT(varchar(10), P.truckDate,101) truckDate, P.customerName, D.productDescription
-                            FROM dbo." + objBQ.DataFrom + @"_KS_Prebooks P
-                            INNER JOIN dbo." + objBQ.DataFrom + @"_KS_PrebooksDetails D on P.number=D.number
-                            WHERE truckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
-                                AND truckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
-                                AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
+                            SELECT P.Id, D.prebookItemId, D.prebook, D.poItemId, P.number, CONVERT(varchar(10), P.shipDate,101) shipDate, CONVERT(varchar(10), convert(datetime, D.prebookTruckDate), 101) truckDate, D.customerName, D.productDescription
+                            FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            WHERE prebookTruckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND prebookTruckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND D.prebookItemId IS NOT NULL AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
                                 ";
 
             string constr = DB_Base.DB_STR;
@@ -325,7 +325,7 @@ namespace BQ
         public DataTable GetNewDuplicates()
         {
             string strSQL = @"
-                             SELECT number 'Order#', [source] 'Company', old_truckDate 'Old Ship Date', new_truckDate 'New Ship Date', insert_date 'Process On' from Prebooks_duplicates where status=1;
+                             SELECT [PO_number] 'Order#', [source] 'Company', old_shipdate 'Old Ship Date', new_shipdate 'New Ship Date', insert_date 'Process On' from PB_PO_duplicate_invoices where status=1;
                                 ";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);

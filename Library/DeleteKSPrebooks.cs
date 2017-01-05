@@ -41,6 +41,31 @@ namespace BQ
             }
             return ds;
         }
+        public DataSet DeleteKSPOById(DC_BQ objBQ)
+        {
+            string sLogFormat = "";
+            DataSet ds = null;
+            try
+            {
+                ds = DeletePO(objBQ);
+            }
+            catch (Exception exp)
+            {
+                sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", sLogFormat + " : " + objBQ.PrebooksId + " : " + objBQ.ProductId + " : " + objBQ.CallFrom);
+                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", exp.ToString());
+
+                string strExceptionInEmail = sLogFormat + " : " + objBQ.PrebooksId + " : " + objBQ.ProductId + " : " + objBQ.CallFrom + "<br><br>";
+                strExceptionInEmail += "Exception Details: <br>";
+                strExceptionInEmail += exp.ToString();
+                SendmailIfException(strExceptionInEmail);
+            }
+            finally
+            {
+                //ds.Dispose();
+            }
+            return ds;
+        }
         public void SendmailIfException(string _message)
         {
             System.Net.Mail.MailMessage Mail = new System.Net.Mail.MailMessage("blumensoft@royalcorp.net", "faruka@aphix.ca");
@@ -65,26 +90,7 @@ namespace BQ
         {
             DataSet ds = null;
             string KSToken = objBQ.KSToken;
-            //Uri uri = new Uri("https://api.kometsales.com/api/prebook.item.delete?authenticationToken=" + KSToken + "");
-            //if (uri.Scheme == Uri.UriSchemeHttps)
-            //{
-            //    try
-            //    {
-            //        string result = "";
-            //        HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/prebook.item.delete?authenticationToken=" + KSToken + "&prebookId=" + objBQ.PrebooksId + "&prebookItemId=" + objBQ.ProductId + "") as HttpWebRequest;
-            //        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //        {
-            //            StreamReader reader = new StreamReader(response.GetResponseStream());
-            //            result = reader.ReadToEnd();
-            //            ds = DerializeDataTable(result);
-            //        }
-            //    }
-            //    catch (Exception exp)
-            //    { }
-            //    finally
-            //    { }
-
-            //}
+            
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.kometsales.com/api/prebook.item.delete");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
@@ -96,6 +102,35 @@ namespace BQ
                     authenticationToken = "" + KSToken + "",
                     prebookId = "" + objBQ.PrebooksId + "",
                     prebookItemId = "" + objBQ.ProductId + ""
+                });
+
+                streamWriter.Write(json);
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                ds = DerializeDataTable(result);
+            }
+
+            return ds;
+        }
+        private DataSet DeletePO(DC_BQ objBQ)
+        {
+            DataSet ds = null;
+            string KSToken = objBQ.KSToken;
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = new JavaScriptSerializer().Serialize(new
+                {
+                    authenticationToken = "" + KSToken + "",
+                    poItemId = "" + objBQ.poItemId + ""
                 });
 
                 streamWriter.Write(json);
