@@ -157,7 +157,6 @@ namespace BQ
         private DataSet getPOList(string Truckdate, DC_BQ objBQ)
         {
             DataSet ds = null;
-            //RFI - Domestic: nprijva0sksc2iugl9f5mm4722
             string KSToken = objBQ.KSToken;
             Uri uri = new Uri("https://api.kometsales.com/api/purchase.order.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "");
             string data = "";

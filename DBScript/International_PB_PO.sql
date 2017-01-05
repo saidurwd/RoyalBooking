@@ -39,7 +39,7 @@ CREATE TABLE [International_PB_PO_Details] (
 [customerName] varchar(255),
 [totalUnits] numeric(18,4),
 [markCode] varchar(255),
-[prebook] numeric(18,4),
+[prebook] varchar(50),
 [unitCost] numeric(18,4),
 [prebookTruckDate] [varchar](50),
 [quantityConfirmed] numeric(18,4),
