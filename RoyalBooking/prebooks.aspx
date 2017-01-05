@@ -6,29 +6,30 @@
     <form id="form1" runat="server">
         <div class="">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <asp:Button ID="Button1" runat="server" Text="Import Prebooks" OnClick="Button1_Click" CssClass="btn btn-primary pull-right" />
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-7 col-md-offset-7 col-sm-offset-6 col-xs-offset-6">
+                    Prebook Truck Date:
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                    <input class="form-control has-feedback-left hasDatePicker" id="txtDateFrom" placeholder="Start" aria-describedby="inputSuccess1Status1" type="text" runat="server">
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess1Status1" class="sr-only">(success)</span>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                    <asp:Button ID="Button1" runat="server" Text="Import Prebooks" OnClick="Button1_Click" CssClass="btn btn-primary pull-right btn-block" />
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                        <input class="form-control has-feedback-left" id="txtdescription" placeholder="Product Description" type="text" runat="server">
-                    </div>
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group"></div>
-                    <div class="col-md-2 col-sm-2 col-xs-12 form-group"> Prebook Truck Date: 
-                        <input class="form-control has-feedback-left hasDatePicker" id="txtDateFrom" placeholder="Start" aria-describedby="inputSuccess1Status1" type="text" runat="server">
-                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                        <span id="inputSuccess1Status1" class="sr-only">(success)</span>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                        <input class="form-control has-feedback-left hasDatePicker" id="txtDateTo" placeholder="End" aria-describedby="inputSuccess2Status2" type="text" runat="server">
-                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                        <span id="inputSuccess2Status2" class="sr-only">(success)</span>
-                    </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                        <asp:Button ID="Button2" runat="server" Text="Search" OnClick="Button2_Click" CssClass="btn btn-primary btn-block pull-right" />
-                    </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                    <input class="form-control has-feedback-left" id="txtdescription" placeholder="Product Description" type="text" runat="server">
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12 form-group"></div>
+                <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                    <input class="form-control has-feedback-left hasDatePicker" id="txtDateTo" placeholder="End" aria-describedby="inputSuccess2Status2" type="text" runat="server">
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                    <asp:Button ID="Button2" runat="server" Text="Search" OnClick="Button2_Click" CssClass="btn btn-primary pull-right  btn-block" />
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -55,10 +56,10 @@
                                                 <asp:TextBox runat="server" ID="txtNumber" Text='<%#Eval("number") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtprebook" Text='<%#Eval("prebook") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtpoItemId" Text='<%#Eval("poItemId") %>' Style="display: none" />
-                                                
+
                                                 <asp:TextBox runat="server" ID="txtProductDescription" Text='<%#Eval("productDescription") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtTruckDate" Text='<%#Eval("truckDate") %>' Style="display: none" />
-                                                
+
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
                                             <HeaderStyle HorizontalAlign="Center" Width="5%" />
