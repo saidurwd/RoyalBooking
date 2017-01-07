@@ -205,11 +205,11 @@ namespace BQ
         private DataSet GetPrebooksQueryResult(DC_BQ objBQ)
         {
             string strSQL = @"
-                            SELECT P.Id, D.prebookItemId, D.prebook, D.poItemId, P.number, CONVERT(varchar(10), P.shipDate,101) shipDate, CONVERT(varchar(10), convert(datetime, D.prebookTruckDate), 101) truckDate, D.customerName, D.productDescription
+                            SELECT P.Id, D.prebookItemId, D.prebook, D.poItemId, P.number, CONVERT(varchar(10), P.shipDate,120) shipDate, CONVERT(varchar(10), convert(datetime, D.prebookTruckDate), 120) truckDate, D.customerName, D.productDescription
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
-                            WHERE prebookTruckDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
-                                AND prebookTruckDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                            WHERE P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND P.shipDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND D.prebookItemId IS NOT NULL AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
                                 ";
 

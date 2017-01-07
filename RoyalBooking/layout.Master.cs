@@ -11,7 +11,8 @@ namespace RoyalBooking
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblCompanyName.Text = Session["CompanyName"].ToString();
+            if (Session["CompanyName"] != null)
+            { lblCompanyName.Text = Session["CompanyName"].ToString(); }
         }
     }
 }

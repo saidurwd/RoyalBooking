@@ -7,7 +7,7 @@
         <div class="">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-7 col-md-offset-7 col-sm-offset-6 col-xs-offset-6">
-                    Prebook Truck Date:
+                    PO Date:
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
                     <input class="form-control has-feedback-left hasDatePicker" id="txtDateFrom" placeholder="Start" aria-describedby="inputSuccess1Status1" type="text" runat="server">
@@ -15,7 +15,7 @@
                     <span id="inputSuccess1Status1" class="sr-only">(success)</span>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                    <asp:Button ID="Button1" runat="server" Text="Import Prebooks" OnClick="Button1_Click" CssClass="btn btn-primary pull-right btn-block" />
+                    <asp:Button ID="Button1" runat="server" Text="Import PO" OnClick="Button1_Click" CssClass="btn btn-primary pull-right btn-block" />
                 </div>
             </div>
             <div class="row">
@@ -37,7 +37,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Manage Prebooks</h2>
+                            <h2>Manage PO</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>

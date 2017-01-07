@@ -27,10 +27,10 @@ namespace BQ
             catch (Exception exp)
             {
                 sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
-                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", sLogFormat + " : " + objBQ.PrebooksId + " : " + objBQ.ProductId + " : " + objBQ.CallFrom);
+                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", sLogFormat + " : " + objBQ.InvoiceNumber + " : " + objBQ.ProductId + " : " + objBQ.CallFrom);
                 CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", exp.ToString());
 
-                string strExceptionInEmail = sLogFormat + " : " + objBQ.PrebooksId + " : " + objBQ.ProductId + " : " + objBQ.CallFrom + "<br><br>";
+                string strExceptionInEmail = sLogFormat + " : " + objBQ.InvoiceNumber + " : " + objBQ.ProductId + " : " + objBQ.CallFrom + "<br><br>";
                 strExceptionInEmail += "Exception Details: <br>";
                 strExceptionInEmail += exp.ToString();
                 SendmailIfException(strExceptionInEmail);
@@ -100,7 +100,7 @@ namespace BQ
                 string json = new JavaScriptSerializer().Serialize(new
                 {
                     authenticationToken = "" + KSToken + "",
-                    prebookId = "" + objBQ.PrebooksId + "",
+                    prebookId = "" + objBQ.InvoiceNumber + "",
                     prebookItemId = "" + objBQ.ProductId + ""
                 });
 

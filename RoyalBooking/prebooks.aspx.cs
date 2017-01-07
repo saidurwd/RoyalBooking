@@ -27,8 +27,8 @@ namespace RoyalBooking
             //ImportPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
             //ImportPrebooks(BQ.DB_Base.KSRFIInternationalToken, BQ.DB_Base.KSRFIInternationalDataFrom);
 
-            //ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
-            ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
+            ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
+            //ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
         }
         protected void ImportLastDaysPOData(string _KSToken, string _DataFrom)
         {
@@ -78,26 +78,26 @@ namespace RoyalBooking
                     DataSet ds = objK.ImportKSInvoideDataForAzure(objBQ);
                     //objK.ImportKSInvoideDataForAzure(objBQ);
 
-                    //string validationfile = "";
-                    //validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
-                    //validationfile = ExportToExcel(ds.Tables[2], "details");
+                    string validationfile = "";
+                    validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
+                    validationfile = ExportToExcel(ds.Tables[2], "details");
 
-                    //if (ds.Tables.Contains("breakdowns"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
-                    //}
-                    //if (ds.Tables.Contains("boxes"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
-                    //}
-                    //if (ds.Tables.Contains("customFields"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
-                    //}
-                    //if (ds.Tables.Contains("vendorAvailabilityDetails"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
-                    //}
+                    if (ds.Tables.Contains("breakdowns"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+                    }
+                    if (ds.Tables.Contains("boxes"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
+                    }
+                    if (ds.Tables.Contains("customFields"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
+                    }
+                    if (ds.Tables.Contains("vendorAvailabilityDetails"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
+                    }
                 }
             }
             //}
@@ -153,14 +153,14 @@ namespace RoyalBooking
                     objK = new BQ.ImportKSPrebooks();
                     DataSet ds = objK.ImportKSPrebooksDataForAzure(objBQ);
 
-                    //string validationfile = "";
-                    //validationfile = ExportToExcel(ds.Tables[1], "prebooks");
-                    //validationfile = ExportToExcel(ds.Tables[2], "details");
+                    string validationfile = "";
+                    validationfile = ExportToExcel(ds.Tables[1], "prebooks");
+                    validationfile = ExportToExcel(ds.Tables[2], "details");
 
-                    //if (ds.Tables.Contains("breakdowns"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
-                    //}
+                    if (ds.Tables.Contains("breakdowns"))
+                    {
+                        validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+                    }
 
                 }
             }
@@ -292,21 +292,30 @@ namespace RoyalBooking
                         objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
                         objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
                         
-                        objBQ.InvoiceNumber = _txtNumber.Text;
+                        
                         objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
                         objBQ.ProcessDay = _txtTruckDate.Text;
+
+                        
+                        ImportKSPrebooks objIP = new ImportKSPrebooks();
+                        DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
+                        objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
 
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet dsPO = objK.DeleteKSPOById(objBQ);
                         DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-                        
+
+
+
+
+
                         if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {
                             UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
                             objUpdate.UpdatePrebookDeleteStatus(objBQ);
                         }
 
-                        CreateErrorLog("CustomLogs/ErrorLogPrebookDeleteItems", sLogFormat+ " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
+                        CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
                     }
                 }
             }
