@@ -90,10 +90,47 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" OnClick="btnMove_Click">Move</button>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Move Prebook</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group text-right">
+                                New Date Range:           
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                <input class="form-control has-feedback-left hasDatePicker" id="txtDateMoveStart" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text" runat="server">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess3Status3" class="sr-only">(success)</span>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                <input class="form-control has-feedback-left hasDatePicker" id="txtDateMoveEnd" placeholder="End" aria-describedby="inputSuccess4Status4" type="text" runat="server">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                <span id="inputSuccess4Status4" class="sr-only">(success)</span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <p>
+                            Are you sure you want to move X number of Freedom 50, to the date range Feb 15 2016 to Feb 17th 2016, from the 3 prebooks and according Pos?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary pull-left" onclick="btnMove_Click">&nbsp;&nbsp;Yes&nbsp;&nbsp;</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;No&nbsp;&nbsp;</button>
                     </div>
                 </div>
             </div>
