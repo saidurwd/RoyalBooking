@@ -290,3 +290,10 @@ $('#single_cal2').daterangepicker({
 }, function (start, end, label) {
     console.log(start.toISOString(), end.toISOString(), label);
 });
+function deleteConfirm() {
+    var result = confirm("Want to delete?");
+    if (result) {
+        return true;
+    }
+    return false;
+}

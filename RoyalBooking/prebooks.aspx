@@ -86,7 +86,7 @@
                             </div>
                             <div class="form-group space-20">
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <asp:Button ID="Button3" runat="server" Text="Delete" OnClick="btnDelete_Click" CssClass="btn btn-danger btn-lg btn-block" />
+                                    <asp:Button ID="Button3" runat="server" Text="Delete" OnClientClick="deleteConfirm();" OnClick="btnDelete_Click" CssClass="btn btn-danger btn-lg btn-block" />
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
