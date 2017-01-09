@@ -6,7 +6,10 @@
     <form id="form1" runat="server">
         <div class="">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-7 col-md-offset-7 col-sm-offset-6 col-xs-offset-6">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                    <input class="form-control" id="txtdescription" placeholder="Product Description" type="text" runat="server">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-4">
                     PO Date:
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
@@ -20,7 +23,12 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                    <input class="form-control has-feedback-left" id="txtdescription" placeholder="Product Description" type="text" runat="server">
+                    <asp:DropDownList ID="ddOrderType" runat="server" CssClass="form-control">
+                        <asp:ListItem Text="Select an Order type"></asp:ListItem>
+                        <asp:ListItem Text="Prebook" Value="P" />
+                        <asp:ListItem Text="Standing" Value="S" />
+                        <asp:ListItem Text="Double" Value="Double" />
+                    </asp:DropDownList>
                 </div>
                 <div class="col-md-7 col-sm-7 col-xs-12 form-group"></div>
                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
@@ -70,7 +78,7 @@
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
                                         <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                                         <asp:BoundField DataField="orderType" HeaderText="Order Type" SortExpression="orderType" />
-                                        
+
                                     </Columns>
                                 </asp:GridView>
                             </div>
