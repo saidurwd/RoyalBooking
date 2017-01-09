@@ -205,12 +205,22 @@ namespace BQ
         private DataSet GetPrebooksQueryResult(DC_BQ objBQ)
         {
             string strSQL = @"
-                            SELECT P.Id, D.prebookItemId, D.prebook, D.poItemId, P.number, CONVERT(varchar(10), P.shipDate,120) shipDate, CONVERT(varchar(10), convert(datetime, D.prebookTruckDate), 120) truckDate, D.customerName, D.productDescription
+                            SELECT P.Id, D.prebookItemId, D.prebook, D.poItemId, P.number, CONVERT(varchar(10), P.shipDate,120) shipDate, CONVERT(varchar(10), 
+                            convert(datetime, D.prebookTruckDate), 120) truckDate, D.customerName, D.productDescription, 
+                            CASE WHEN P.status='CF' then 'Confirmed by Farm'
+                            WHEN P.status='A' then 'Approved'
+                            WHEN P.status='PA' then 'Pending Approval'
+                            ELSE '' END status,
+                            CASE WHEN D.orderType='P' then 'Prebook'
+                            WHEN D.orderType='S' then 'Standing Order'
+                            WHEN D.orderType='D' then 'Double'
+                            ELSE '' END orderType
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             WHERE P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND P.shipDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND D.prebookItemId IS NOT NULL AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
+                                ORDER BY P.shipDate
                                 ";
 
             string constr = DB_Base.DB_STR;

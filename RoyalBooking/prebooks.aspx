@@ -68,6 +68,9 @@
                                         <asp:BoundField DataField="shipDate" HeaderText="PO Date" SortExpression="shipDate" />
                                         <asp:BoundField DataField="truckDate" HeaderText="Prebook Date" SortExpression="truckDate" />
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
+                                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
+                                        <asp:BoundField DataField="orderType" HeaderText="Order Type" SortExpression="orderType" />
+                                        
                                     </Columns>
                                 </asp:GridView>
                             </div>

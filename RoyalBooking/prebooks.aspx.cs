@@ -27,8 +27,9 @@ namespace RoyalBooking
             //ImportPrebooks(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
             //ImportPrebooks(BQ.DB_Base.KSRFIInternationalToken, BQ.DB_Base.KSRFIInternationalDataFrom);
 
-            ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
-            //ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
+            //ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
+
+            ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
         }
         protected void ImportLastDaysPOData(string _KSToken, string _DataFrom)
         {
@@ -74,30 +75,40 @@ namespace RoyalBooking
                     objBQ.ToDate = truckdate2;
                     objBQ.ProcessDay = truckdate2;
 
+                    
                     objK = new BQ.ImportKSPO();
+                    objBQ.OrderStatus = "Confirmed by Farm";
                     DataSet ds = objK.ImportKSInvoideDataForAzure(objBQ);
+
+                    objK = new BQ.ImportKSPO();
+                    objBQ.OrderStatus = "Approved";
+                    ds = objK.ImportKSInvoideDataForAzure(objBQ);
+
+                    objK = new BQ.ImportKSPO();
+                    objBQ.OrderStatus = "Pending Approval";
+                    ds = objK.ImportKSInvoideDataForAzure(objBQ);
                     //objK.ImportKSInvoideDataForAzure(objBQ);
 
-                    string validationfile = "";
-                    validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
-                    validationfile = ExportToExcel(ds.Tables[2], "details");
+                    //string validationfile = "";
+                    //validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
+                    //validationfile = ExportToExcel(ds.Tables[2], "details");
 
-                    if (ds.Tables.Contains("breakdowns"))
-                    {
-                        validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
-                    }
-                    if (ds.Tables.Contains("boxes"))
-                    {
-                        validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
-                    }
-                    if (ds.Tables.Contains("customFields"))
-                    {
-                        validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
-                    }
-                    if (ds.Tables.Contains("vendorAvailabilityDetails"))
-                    {
-                        validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
-                    }
+                    //if (ds.Tables.Contains("breakdowns"))
+                    //{
+                    //    validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+                    //}
+                    //if (ds.Tables.Contains("boxes"))
+                    //{
+                    //    validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
+                    //}
+                    //if (ds.Tables.Contains("customFields"))
+                    //{
+                    //    validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
+                    //}
+                    //if (ds.Tables.Contains("vendorAvailabilityDetails"))
+                    //{
+                    //    validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
+                    //}
                 }
             }
             //}

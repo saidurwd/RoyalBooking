@@ -168,7 +168,7 @@ namespace BQ
 
                     // Create the web request  
                     //HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "&status=Approved") as HttpWebRequest;
-                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "") as HttpWebRequest;
+                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "&status=" + objBQ.OrderStatus + "") as HttpWebRequest;
                     // Get response  
                     using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                     {

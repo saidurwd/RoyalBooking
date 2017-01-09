@@ -281,5 +281,18 @@ namespace BQ
                 p_poItemId = value;
             }
         }
+
+        private string p_OrderStatus = String.Empty;
+        public string OrderStatus
+        {
+            get
+            {
+                return p_OrderStatus;
+            }
+            set
+            {
+                p_OrderStatus = value;
+            }
+        }
     }
 }
