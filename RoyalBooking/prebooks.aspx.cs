@@ -206,6 +206,7 @@ namespace RoyalBooking
                 objBQ.FromDate = txtDateFrom.Value;
                 objBQ.ToDate = txtDateTo.Value;
                 objBQ.DataFrom = _DataFrom;
+                objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
 
                 ReadKSData objK = new BQ.ReadKSData();
                 DataSet ds = objK.ReadKSPrebooks(objBQ);
@@ -315,10 +316,66 @@ namespace RoyalBooking
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet dsPO = objK.DeleteKSPOById(objBQ);
                         DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+                        
+                        if (ds.Tables[0].Rows[0][1].ToString() == "1")
+                        {
+                            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                        }
+
+                        CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                CreateErrorLog("CustomLogs/ErrorLogPrebookDelete", exp.ToString());
+            }
+            finally
+            {
+
+            }
+        }
+        protected void btnMove_Click(object sender, EventArgs e)
+        {
+            string sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+            try
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox _chkRow = gr.FindControl("chkRow") as CheckBox;
+                    if (_chkRow.Checked == true)
+                    {
+                        TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox; //PO ID
+                        TextBox _txtprebook = gr.FindControl("txtprebook") as TextBox; //Prebook ID
+                        TextBox _txtprebookItemId = gr.FindControl("txtprebookItemId") as TextBox; //Prebook Item Id
+                        TextBox _txtpoItemId = gr.FindControl("txtpoItemId") as TextBox; //PO Item Id
+                        TextBox _txtNumber = gr.FindControl("txtNumber") as TextBox; //PO Number
+                        TextBox _txtProductDescription = gr.FindControl("txtProductDescription") as TextBox;
+                        TextBox _txtTruckDate = gr.FindControl("txtTruckDate") as TextBox;
+
+                        BQ.DC_BQ objBQ = new BQ.DC_BQ();
+                        objBQ.KSToken = BQ.DB_Base.KSDemoToken;
+                        objBQ.DataFrom = BQ.DB_Base.KSDemoDataFrom;
+                        objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
+                        objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
+                        objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
 
 
+                        objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
+                        objBQ.ProcessDay = _txtTruckDate.Text;
 
 
+                        ImportKSPrebooks objIP = new ImportKSPrebooks();
+                        DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
+                        objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
+
+                        DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
+                        DataSet dsPO = objK.DeleteKSPOById(objBQ);
+                        DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+
+                        CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
+                        DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ);
 
                         if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {

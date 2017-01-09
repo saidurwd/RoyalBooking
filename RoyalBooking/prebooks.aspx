@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
                     <asp:DropDownList ID="ddOrderType" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Select an Order type"></asp:ListItem>
+                        <asp:ListItem Text="Select an Order type" Value=""></asp:ListItem>
                         <asp:ListItem Text="Prebook" Value="P" />
                         <asp:ListItem Text="Standing" Value="S" />
                         <asp:ListItem Text="Double" Value="Double" />
@@ -72,10 +72,12 @@
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
                                             <HeaderStyle HorizontalAlign="Center" Width="5%" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="number" HeaderText="PO" SortExpression="number" />
                                         <asp:BoundField DataField="shipDate" HeaderText="PO Date" SortExpression="shipDate" />
                                         <asp:BoundField DataField="truckDate" HeaderText="Prebook Date" SortExpression="truckDate" />
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
+                                        <asp:BoundField DataField="number" HeaderText="PO" SortExpression="number" />
+                                        <asp:BoundField DataField="prebook" HeaderText="prebook" SortExpression="prebook" />
+                                        <asp:BoundField DataField="productDescription" HeaderText="Product" SortExpression="productDescription" />
                                         <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                                         <asp:BoundField DataField="orderType" HeaderText="Order Type" SortExpression="orderType" />
 
@@ -88,7 +90,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Move</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" OnClick="btnMove_Click">Move</button>
                                 </div>
                             </div>
                         </div>

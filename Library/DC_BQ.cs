@@ -22,7 +22,7 @@ namespace BQ
         public static string KSDemoDataFrom = "Demo";
 
         //public const string DB_STR = @"Data Source=.\BLUMENSOFT;Initial Catalog=BQ;Persist Security Info=True;User ID=sa;Password=sql@2012; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
-        public const string DB_STR = @"Data Source=.\SQL2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2014; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
+        public const string DB_STR = @"Data Source=.\SQL2016;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2016; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         //public const string DB_STR = @"Data Source=DESKTOP-AF7JH3R\MSSQLSERVER2014;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=SQL2014$$; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         //public const string DB_STR = @"Data Source=royal-dw01.database.windows.net;Initial Catalog=DataWarehouse;Persist Security Info=True;User ID=royaladmin@royal-dw01;Password=zxcasdQWE!@#; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         public static string AppName = "RFISales";

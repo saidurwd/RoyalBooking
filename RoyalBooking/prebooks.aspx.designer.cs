@@ -22,6 +22,15 @@ namespace RoyalBooking {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// txtdescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtdescription;
+        
+        /// <summary>
         /// txtDateFrom control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,13 @@ namespace RoyalBooking {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// txtdescription control.
+        /// ddOrderType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtdescription;
+        protected global::System.Web.UI.WebControls.DropDownList ddOrderType;
         
         /// <summary>
         /// txtDateTo control.

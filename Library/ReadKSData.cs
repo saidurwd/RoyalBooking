@@ -35,6 +35,10 @@ namespace BQ
             DataSet ds = GetPrebooksQueryResult(objBQ);
             return ds;
         }
+        public DataSet ReadKSPOJSON(DC_BQ objBQ)
+        {
+            return GePOJSON(objBQ);
+        }
         public DataSet GetInvoiceQueryResult()
         {
             string strSQL = @"SELECT     
@@ -220,7 +224,49 @@ namespace BQ
                             WHERE P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND P.shipDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND D.prebookItemId IS NOT NULL AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
+                                AND (D.orderType='" + objBQ.OrderStatus + "' OR '" + objBQ.OrderStatus + @"'='')
                                 ORDER BY P.shipDate
+                                ";
+
+            string constr = DB_Base.DB_STR;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+            DataSet ds = new DataSet();
+            adpt.Fill(ds);
+            adpt.Dispose();
+            con.Close();
+            con.Dispose();
+            return ds;
+
+        }
+        private DataSet GePOJSON(DC_BQ objBQ)
+        {
+            string strSQL = @"
+                            SELECT '"+ objBQ.KSToken + @"' as authenticationToken,
+                            D.customerId, carrierId, CONVERT(varchar(10), D.prebookTruckDate,120) shipDate, comments
+                            
+                            FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            WHERE poItemId="+ objBQ.poItemId + @"
+                            FOR JSON PATH;
+
+                        SELECT 
+                            vendorId as 'vendorId'
+                            ,productId as 'productId'
+                            ,boxType as 'boxTypeCode'
+                            ,unitType as 'unitType'
+                            ,convert(int,D.totalBoxes) as 'boxes'
+                            ,convert(int,D.bunches) as 'bunches'
+                            ,convert(int,D.stemsBunch) as 'stemsBunch'
+                            ,convert(numeric(18,2),D.unitCost) as 'cost'
+                            ,convert(numeric(18,2),D.unitCost) as 'price'
+                            ,D.markCode as 'markCode'
+                            ,D.notes as 'notes' 
+                            FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            WHERE poItemId=" + objBQ.poItemId + @"
+                            FOR JSON PATH;  
                                 ";
 
             string constr = DB_Base.DB_STR;
@@ -261,11 +307,11 @@ namespace BQ
         {
 
             string strSQL = @"
-            select top 1 * from PO_PurchaseOrders;
-            select top 1 * from PO_details;
-            select top 1 * from PO_boxes;
-            select top 1 * from PO_breakdowns;
-            select top 1 * from PO_CustomFields;
+            select top 1 * from PB_PO_PurchaseOrders;
+            select top 1 * from PB_PO_details;
+            select top 1 * from PB_PO_boxes;
+            select top 1 * from PB_PO_breakdowns;
+            select top 1 * from PB_PO_CustomFields;
                                 ";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);
