@@ -135,7 +135,7 @@ namespace BQ
             //RFI - Domestic: nprijva0sksc2iugl9f5mm4722
             string KSToken = objBQ.KSToken;
             
-            Uri uri = new Uri("https://api.kometsales.com/api/prebook.list?authenticationToken=" + KSToken + "&dateFrom=" + Truckdate + "&dateTo=" + Truckdate + "&prebook="+objBQ.PrebooksId+"");
+            Uri uri = new Uri("https://api.kometsales.com/api/prebook.details.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "&prebook="+objBQ.PrebooksId+"");
             string data = "";
             if (uri.Scheme == Uri.UriSchemeHttps)
             {
@@ -143,7 +143,7 @@ namespace BQ
                 {
                     string result = "";
                     // Create the web request  
-                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/prebook.list?authenticationToken=" + KSToken + "&dateFrom=" + Truckdate + "&dateTo=" + Truckdate + "&prebook=" + objBQ.PrebooksId + "") as HttpWebRequest;
+                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/prebook.details.list?authenticationToken=" + KSToken + "&date=" + Truckdate + "&prebook=" + objBQ.PrebooksId + "") as HttpWebRequest;
                     // Get response  
                     using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                     {

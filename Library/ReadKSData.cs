@@ -254,7 +254,7 @@ namespace BQ
                         SELECT 
                             vendorId as 'vendorId'
                             ,productId as 'productId'
-                            ,boxType as 'boxTypeCode'
+                            ,BT.ID as 'boxTypeId'
                             ,unitType as 'unitType'
                             ,convert(int,D.totalBoxes) as 'boxes'
                             ,convert(int,D.bunches) as 'bunches'
@@ -265,6 +265,7 @@ namespace BQ
                             ,D.notes as 'notes' 
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            LEFT JOIN dbo." + objBQ.DataFrom + @"_BoxType BT ON D.boxType=BT.CODE
                             WHERE poItemId=" + objBQ.poItemId + @"
                             FOR JSON PATH;  
                                 ";

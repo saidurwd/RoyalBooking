@@ -13,7 +13,9 @@ namespace BQ
         public static string KSRFGToken = "ofleftucl52u19r2c0pqff0jkr";
         public static string KSJOYToken = "7oa8s7ljmj2jgtgqios2a4d9vv";
         public static string KSDemoToken = "c798b3kff1cq1if1q2dni3h46m";
+        public static string KSGmbHToken = "6fvpusraaeplah3vdjo7r2ph5e";
         
+
 
         public static string KSRFIDomesticDataFrom = "Domestic";
         public static string KSRFIInternationalDataFrom = "International";

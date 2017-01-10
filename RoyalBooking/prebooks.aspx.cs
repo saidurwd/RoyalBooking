@@ -87,6 +87,8 @@ namespace RoyalBooking
                     objK = new BQ.ImportKSPO();
                     objBQ.OrderStatus = "Pending Approval";
                     ds = objK.ImportKSInvoideDataForAzure(objBQ);
+
+                    
                     //objK.ImportKSInvoideDataForAzure(objBQ);
 
                     //string validationfile = "";
@@ -373,14 +375,16 @@ namespace RoyalBooking
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet dsPO = objK.DeleteKSPOById(objBQ);
                         DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-
-                        CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
-                        DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ);
-
+                        
                         if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {
-                            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
-                            objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                            //Create Prebook
+                            CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
+                            DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ);
+
+                            //Update Database
+                            //UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+                            //objUpdate.UpdatePrebookDeleteStatus(objBQ);
                         }
 
                         CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
