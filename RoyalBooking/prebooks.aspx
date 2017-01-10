@@ -77,7 +77,7 @@
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
                                         <asp:BoundField DataField="number" HeaderText="PO" SortExpression="number" />
                                         <asp:BoundField DataField="prebook" HeaderText="prebook" SortExpression="prebook" />
-                                        <asp:BoundField DataField="productDescription" HeaderText="Product" SortExpression="productDescription" />
+                                        <asp:BoundField DataField="productDescription" HeaderText="Product" SortExpression="productDescription" ControlStyle-CssClass="hello" />
                                         <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                                         <asp:BoundField DataField="orderType" HeaderText="Order Type" SortExpression="orderType" />
 
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
+                                    <button type="button" id="btnMoveModal" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
                                 </div>
                             </div>
                         </div>
@@ -125,11 +125,11 @@
                         <div class="clearfix"></div>
                         <hr />
                         <p>
-                            Are you sure you want to move X number of Freedom 50, to the date range Feb 15 2016 to Feb 17th 2016, from the 3 prebooks and according Pos?
+                            Are you sure you want to move <span id="spnMoveProduct"></span> to the date range <span id="spnDateMoveStart"></span> to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span> prebooks and according Pos?
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary pull-left" onclick="btnMove_Click">&nbsp;&nbsp;Yes&nbsp;&nbsp;</button>
+                        <asp:Button runat="server" Text="&nbsp;&nbsp;Yes&nbsp;&nbsp;" OnClick="btnMove_Click" CssClass="btn btn-primary pull-left" />
                         <button type="button" class="btn btn-default" data-dismiss="modal">&nbsp;&nbsp;No&nbsp;&nbsp;</button>
                     </div>
                 </div>
