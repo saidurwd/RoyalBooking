@@ -35,9 +35,9 @@ namespace BQ
             DataSet ds = GetPrebooksQueryResult(objBQ);
             return ds;
         }
-        public DataSet ReadKSPOJSON(DC_BQ objBQ)
+        public DataSet ReadKSPOJSON(DC_BQ objBQ, Prebooks objPB)
         {
-            return GePOJSON(objBQ);
+            return GePOJSON(objBQ, objPB);
         }
         public DataSet GetInvoiceQueryResult()
         {
@@ -240,12 +240,14 @@ namespace BQ
             return ds;
 
         }
-        private DataSet GePOJSON(DC_BQ objBQ)
+        private DataSet GePOJSON(DC_BQ objBQ, Prebooks objPB)
         {
             string strSQL = @"
                             SELECT '"+ objBQ.KSToken + @"' as authenticationToken,
-                            D.customerId, carrierId, CONVERT(varchar(10), D.prebookTruckDate,120) shipDate, comments
-                            
+                            D.customerId,
+                            '"+objPB.customerPoNumber+@"' as  customerPO,
+                            '" + objPB.shipToId + @"' as shipToId, 
+                            carrierId, CONVERT(varchar(10),'"+ objBQ.ProcessDay + @"', 120) shipDate, '"+ objPB.comments + @"' comments
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             WHERE poItemId="+ objBQ.poItemId + @"
@@ -260,8 +262,8 @@ namespace BQ
                             ,convert(int,D.bunches) as 'bunches'
                             ,convert(int,D.stemsBunch) as 'stemsBunch'
                             ,convert(numeric(18,2),D.unitCost) as 'cost'
-                            ,convert(numeric(18,2),D.unitCost) as 'price'
-                            ,D.markCode as 'markCode'
+                            ,convert(numeric(18,2),"+ objPB.unitPrice + @") as 'price'
+                            ,'"+ objPB.markCode + @"' as 'markCode'
                             ,D.notes as 'notes' 
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number

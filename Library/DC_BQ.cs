@@ -14,7 +14,7 @@ namespace BQ
         public static string KSJOYToken = "7oa8s7ljmj2jgtgqios2a4d9vv";
         public static string KSDemoToken = "c798b3kff1cq1if1q2dni3h46m";
         public static string KSGmbHToken = "6fvpusraaeplah3vdjo7r2ph5e";
-        
+
 
 
         public static string KSRFIDomesticDataFrom = "Domestic";
@@ -29,7 +29,7 @@ namespace BQ
         //public const string DB_STR = @"Data Source=royal-dw01.database.windows.net;Initial Catalog=DataWarehouse;Persist Security Info=True;User ID=royaladmin@royal-dw01;Password=zxcasdQWE!@#; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         public static string AppName = "RFISales";
         public static string BQDataRegion = "101";
-        
+
         //RFI_Domestic
         //RFI_International
         //RFG
@@ -41,7 +41,7 @@ namespace BQ
 
         public static string BQDataSetForArciveRFIDomestic = "RFI_Domestic_Archive";
         public static string BQDataSetForArciveRFIInternational = "RFI_International_Archive";
-        
+
         public static string BQTableOperation = "bigquery#table";
         public static string BQInsertDataOperation = "bigquery#tableDataInsertAllRequest";
 
@@ -86,9 +86,9 @@ namespace BQ
         public static string Call_From_Weekly_Sales_CommonDataSet = "Weekly Sales for Common Dataset";
         public static string Call_From_Day_8th_Sales_CommonDataSet = "Day_8th Sales for Common Dataset";
         public static string Call_From_Credit_60_1_CommonDataSet = "Credit 60-1 for Common Dataset";
-        
+
     }
-    
+
     public class DC_BQ
     {
 
@@ -192,7 +192,7 @@ namespace BQ
                 p_DataFrom = value;
             }
         }
-        
+
         private int p_CreditStatus = -1;
         public int CreditStatus
         {
@@ -270,7 +270,7 @@ namespace BQ
                 p_prebooks_Id = value;
             }
         }
-        
+
         private int p_poItemId = -1;
         public int poItemId
         {
@@ -296,5 +296,83 @@ namespace BQ
                 p_OrderStatus = value;
             }
         }
+    }
+
+    public class Prebooks
+    {
+
+        private string p_unitPrice = String.Empty;
+        public string unitPrice
+        {
+            get
+            {
+                return p_unitPrice;
+            }
+            set
+            {
+                p_unitPrice = value;
+            }
+        }
+        private string p_customerId = String.Empty;
+        public string customerId
+        {
+            get
+            {
+                return p_customerId;
+            }
+            set
+            {
+                p_customerId = value;
+            }
+        }
+        private string p_shipToId = String.Empty;
+        public string shipToId
+        {
+            get
+            {
+                return p_shipToId;
+            }
+            set
+            {
+                p_shipToId = value;
+            }
+        }
+        private string p_customerPoNumber = String.Empty;
+        public string customerPoNumber
+        {
+            get
+            {
+                return p_customerPoNumber;
+            }
+            set
+            {
+                p_customerPoNumber = value;
+            }
+        }
+        private string p_comments = String.Empty;
+        public string comments
+        {
+            get
+            {
+                return p_comments;
+            }
+            set
+            {
+                p_comments = value;
+            }
+        }
+        private string p_markCode = String.Empty;
+        public string markCode
+        {
+            get
+            {
+                return p_markCode;
+            }
+            set
+            {
+                p_markCode = value;
+            }
+        }
+        
     }
 }

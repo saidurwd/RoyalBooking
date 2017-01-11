@@ -162,6 +162,37 @@ namespace BQ
             }
             return ds;
         }
+
+        public DataSet getCustomerShipTo(DC_BQ objBQ, Prebooks objPB)
+        {
+            DataSet ds = null;
+            string KSToken = objBQ.KSToken;
+            Uri uri = new Uri("https://api.kometsales.com/api/customer.shipto.list?authenticationToken=" + KSToken + "&customerId=" + objPB.customerId + "");
+            if (uri.Scheme == Uri.UriSchemeHttps)
+            {
+                try
+                {
+                    string result = "";
+                    // Create the web request  
+                    HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/customer.shipto.list?authenticationToken=" + KSToken + "&customerId=" + objPB.customerId + "") as HttpWebRequest;
+                    // Get response  
+                    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                    {
+                        // Get the response stream  
+                        StreamReader reader = new StreamReader(response.GetResponseStream());
+                        // Read the whole contents and return as a string  
+                        result = reader.ReadToEnd();
+                        ds = DerializeDataTable(result);
+                    }
+                }
+                catch (Exception exp)
+                { }
+                finally
+                { }
+
+            }
+            return ds;
+        }
         private DataSet getPOListAllStatus(string Truckdate, DC_BQ objBQ)
         {
             DataSet ds = null;
@@ -354,6 +385,61 @@ namespace BQ
             string sLogFormat = "";
             sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
             CreateLogTime("CustomLogs/ErrorLogPrebookImport", sLogFormat + " PO Ship Date: " + Truckdate + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
+        }
+
+        public void SaveBreakDown(DataTable _dt, DC_BQ objBQ)
+        {
+            ReadKSData objRD = new ReadKSData();
+            DataSet dsColName = objRD.GetPrebooksColumnName();
+
+            DataTable dataTable;
+            string strSQL = "";
+            SqlConnection connection = new SqlConnection(conString);
+
+            strSQL = @"
+                DELETE FROM dbo.KS_PrebooksBreakDowns;
+            ";
+
+            connection.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, connection);
+            object objResult = null;
+
+            SqlCommand dbCommand = adpt.SelectCommand;
+            dbCommand.CommandText = strSQL;
+            dbCommand.CommandTimeout = 0;
+            dbCommand.CommandType = CommandType.Text;
+            objResult = dbCommand.ExecuteScalar();
+
+            if (_dt.Rows.Count>0)
+            {
+                dataTable = dsColName.Tables[2];
+                string[] columnNames = dataTable.Columns.Cast<DataColumn>()
+                                     .Select(x => x.ColumnName)
+                                     .ToArray();
+                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                    {
+                        connection.Open();
+                        bulkCopy.BatchSize = 500;
+                        bulkCopy.BulkCopyTimeout = 0;
+                        bulkCopy.DestinationTableName = "dbo.KS_PrebooksBreakDowns";
+                        foreach (DataColumn column in _dt.Columns)
+                        {
+                            if (columnNames.Contains(column.ColumnName))
+                            {
+                                bulkCopy.ColumnMappings.Add(column.ColumnName, column.ColumnName);
+                            }
+                        }
+                        bulkCopy.WriteToServer(_dt);
+                        connection.Close();
+                    }
+                
+            }
+            
+            connection.Close();
+
+            string sLogFormat = "";
+            sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+            CreateLogTime("CustomLogs/PrebookBreakDownSave", sLogFormat + " PO Ship Date: " + objBQ.ProcessDay + " : " + objBQ.DataFrom + " : " + objBQ.CallFrom);
         }
         private DataSet DerializeDataTable(string str)
         {

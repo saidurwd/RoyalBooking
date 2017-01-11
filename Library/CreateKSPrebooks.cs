@@ -16,13 +16,13 @@ namespace BQ
     {
         string conString = DB_Base.DB_STR;
         string path = System.AppDomain.CurrentDomain.BaseDirectory;
-        public DataSet CreateKSPrebooksById(DC_BQ objBQ)
+        public DataSet CreateKSPrebooksById(DC_BQ objBQ, Prebooks objPB)
         {
             string sLogFormat = "";
             DataSet ds = null;
             try
             {
-                ds = CreatePrebooks(objBQ);
+                ds = CreatePrebooks(objBQ, objPB);
             }
             catch (Exception exp)
             {
@@ -62,7 +62,7 @@ namespace BQ
             Mail.Dispose();
         }
 
-        private DataSet CreatePrebooks(DC_BQ objBQ)
+        private DataSet CreatePrebooks(DC_BQ objBQ, Prebooks objPB)
         {
             DataSet ds = null;
             string KSToken = objBQ.KSToken;
@@ -72,7 +72,7 @@ namespace BQ
             httpWebRequest.Method = "POST";
 
             ReadKSData objK = new BQ.ReadKSData();
-            DataSet dsJson = objK.ReadKSPOJSON(objBQ);
+            DataSet dsJson = objK.ReadKSPOJSON(objBQ, objPB);
             string json = dsJson.Tables[0].Rows[0][0].ToString();
             json = json.Remove(json.Length - 2);
             json = json.Substring(2, json.Length - 2);

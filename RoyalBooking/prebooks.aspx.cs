@@ -63,7 +63,7 @@ namespace RoyalBooking
             adpt.Fill(dtdate);
             con.Close();
             string truckdate2 = "";
-            
+
             BQ.ImportKSPO objK = new BQ.ImportKSPO();
             objK.DeleteAll(objBQ);
             if (dtdate.Rows.Count > 0)
@@ -75,7 +75,7 @@ namespace RoyalBooking
                     objBQ.ToDate = truckdate2;
                     objBQ.ProcessDay = truckdate2;
 
-                    
+
                     objK = new BQ.ImportKSPO();
                     objBQ.OrderStatus = "Confirmed by Farm";
                     DataSet ds = objK.ImportKSInvoideDataForAzure(objBQ);
@@ -88,7 +88,7 @@ namespace RoyalBooking
                     objBQ.OrderStatus = "Pending Approval";
                     ds = objK.ImportKSInvoideDataForAzure(objBQ);
 
-                    
+
                     //objK.ImportKSInvoideDataForAzure(objBQ);
 
                     //string validationfile = "";
@@ -305,12 +305,12 @@ namespace RoyalBooking
                         objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
                         objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
                         objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
-                        
-                        
+
+
                         objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
                         objBQ.ProcessDay = _txtTruckDate.Text;
 
-                        
+
                         ImportKSPrebooks objIP = new ImportKSPrebooks();
                         DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
                         objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
@@ -318,7 +318,7 @@ namespace RoyalBooking
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet dsPO = objK.DeleteKSPOById(objBQ);
                         DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-                        
+
                         if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {
                             UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
@@ -363,31 +363,71 @@ namespace RoyalBooking
                         objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
                         objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
 
+                        BQ.Prebooks objPB = new BQ.Prebooks();
 
                         objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
-                        objBQ.ProcessDay = _txtTruckDate.Text;
+                        string _dateTime = txtDateMoveStart.Text;
+                        string _createddate = Convert.ToDateTime(_dateTime).ToString("yyyy-MM-dd");
+                        objBQ.ProcessDay = _createddate;
 
 
                         ImportKSPrebooks objIP = new ImportKSPrebooks();
                         DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
                         objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
+                        objPB.customerId = dsPrebook.Tables["prebooks"].Rows[0]["customerId"].ToString();
 
-                        DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
-                        DataSet dsPO = objK.DeleteKSPOById(objBQ);
-                        DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-                        
-                        if (ds.Tables[0].Rows[0][1].ToString() == "1")
+                        if (dsPrebook.Tables["prebooks"].Columns.Contains("customerPoNumber"))
                         {
-                            //Create Prebook
-                            CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
-                            DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ);
-
-                            //Update Database
-                            //UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
-                            //objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                            objPB.customerPoNumber = dsPrebook.Tables["prebooks"].Rows[0]["customerPoNumber"].ToString();
+                        }
+                        if (dsPrebook.Tables["prebooks"].Columns.Contains("comments"))
+                        {
+                            objPB.comments = dsPrebook.Tables["prebooks"].Rows[0]["comments"].ToString();
+                        }
+                        if (dsPrebook.Tables["prebooks"].Columns.Contains("shipName"))
+                        {
+                            string _shipName = dsPrebook.Tables["prebooks"].Rows[0]["shipName"].ToString();
+                            if (_shipName != "")
+                            {
+                                DataSet dsShipTo = objIP.getCustomerShipTo(objBQ, objPB);
+                                string _shipToId = dsShipTo.Tables[1].Select("name=" + _shipName + "").CopyToDataTable().Rows[0]["id"].ToString(); ;
+                                objPB.shipToId = _shipToId;
+                            }
+                        }
+                        if (dsPrebook.Tables.Contains("details"))
+                        {
+                            DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
+                            string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
+                            objPB.unitPrice = _unitPrice;
+                            if (dsPrebook.Tables.Contains("breakdowns"))
+                            {
+                                DataTable dtPBBreakDown = dsPrebook.Tables["breakdowns"].Select("details_Id=" + dtPBD.Rows[0]["details_Id"].ToString() + "").CopyToDataTable();
+                                objIP.SaveBreakDown(dtPBBreakDown, objBQ);
+                            }
+                            if (dsPrebook.Tables["details"].Columns.Contains("markCode"))
+                            {
+                                objPB.markCode = dsPrebook.Tables["details"].Rows[0]["markCode"].ToString();
+                            }
                         }
 
-                        CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
+                        
+
+                        //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
+                        //DataSet dsPO = objK.DeleteKSPOById(objBQ);
+                        //DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+
+                        //if (ds.Tables[0].Rows[0][1].ToString() == "1")
+                        //{
+                        //Create Prebook
+                        CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
+                        DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ, objPB);
+
+                        //    //Update Database
+                        //    //UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+                        //    //objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                        //}
+
+                        //CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
                     }
                 }
             }

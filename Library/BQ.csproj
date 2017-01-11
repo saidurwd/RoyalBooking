@@ -98,6 +98,7 @@
     <Compile Include="DeleteKSPrebooks.cs" />
     <Compile Include="ImportKSPO.cs" />
     <Compile Include="ImportKSPrebooks.cs" />
+    <Compile Include="ImportKSBoxType.cs" />
     <Compile Include="ImportKSVendorAvailability.cs" />
     <Compile Include="ImportKSProduct.cs" />
     <Compile Include="ImportKSVendor.cs" />

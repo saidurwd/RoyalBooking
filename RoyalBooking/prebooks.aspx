@@ -112,7 +112,7 @@
                                 New Date Range:           
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                                <input class="form-control has-feedback-left hasDatePicker" id="txtDateMoveStart" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text" runat="server">
+                                <asp:TextBox runat="server" ID="txtDateMoveStart" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text"/>
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess3Status3" class="sr-only">(success)</span>
                             </div>
