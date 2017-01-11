@@ -390,7 +390,7 @@ namespace RoyalBooking
                             if (_shipName != "")
                             {
                                 DataSet dsShipTo = objIP.getCustomerShipTo(objBQ, objPB);
-                                string _shipToId = dsShipTo.Tables[1].Select("name=" + _shipName + "").CopyToDataTable().Rows[0]["id"].ToString(); ;
+                                string _shipToId = dsShipTo.Tables[1].Select("name='" + _shipName + "'").CopyToDataTable().Rows[0]["id"].ToString(); ;
                                 objPB.shipToId = _shipToId;
                             }
                         }

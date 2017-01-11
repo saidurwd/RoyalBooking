@@ -74,12 +74,20 @@ namespace BQ
             ReadKSData objK = new BQ.ReadKSData();
             DataSet dsJson = objK.ReadKSPOJSON(objBQ, objPB);
             string json = dsJson.Tables[0].Rows[0][0].ToString();
-            json = json.Remove(json.Length - 2);
-            json = json.Substring(2, json.Length - 2);
+            json = json.Remove(json.Length - 2); //Remove last two char
+            json = json.Substring(2, json.Length - 2); //Remove first two
             string jsonDetails = dsJson.Tables[1].Rows[0][0].ToString();
+            string jsonBreakDowns = dsJson.Tables[2].Rows[0][0].ToString();
             jsonDetails = jsonDetails.Remove(jsonDetails.Length - 1);
             jsonDetails = jsonDetails.Substring(1, jsonDetails.Length - 1);
-            json += ", \"prebookItems\":[" + jsonDetails+"]}";
+            
+            if (jsonBreakDowns.Length > 0)
+            {
+                jsonDetails = jsonDetails.Remove(jsonDetails.Length - 1);
+                json += ", \"prebookItems\":[" + jsonDetails + ",\"breakdowns\":" + jsonBreakDowns + "}]}";
+            }
+            else { json += ", \"prebookItems\":[" + jsonDetails + "]}"; }
+
             json = "{" + json;
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {

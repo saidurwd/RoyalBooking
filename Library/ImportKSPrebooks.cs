@@ -390,7 +390,7 @@ namespace BQ
         public void SaveBreakDown(DataTable _dt, DC_BQ objBQ)
         {
             ReadKSData objRD = new ReadKSData();
-            DataSet dsColName = objRD.GetPrebooksColumnName();
+            DataSet dsColName = objRD.GetPrebooksBreakDownColumnName();
 
             DataTable dataTable;
             string strSQL = "";
@@ -409,10 +409,11 @@ namespace BQ
             dbCommand.CommandTimeout = 0;
             dbCommand.CommandType = CommandType.Text;
             objResult = dbCommand.ExecuteScalar();
+            connection.Close();
 
             if (_dt.Rows.Count>0)
             {
-                dataTable = dsColName.Tables[2];
+                dataTable = dsColName.Tables[0];
                 string[] columnNames = dataTable.Columns.Cast<DataColumn>()
                                      .Select(x => x.ColumnName)
                                      .ToArray();
@@ -435,7 +436,7 @@ namespace BQ
                 
             }
             
-            connection.Close();
+            
 
             string sLogFormat = "";
             sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";

@@ -243,11 +243,14 @@ namespace BQ
         private DataSet GePOJSON(DC_BQ objBQ, Prebooks objPB)
         {
             string strSQL = @"
-                            SELECT '"+ objBQ.KSToken + @"' as authenticationToken,
+                            SELECT '" + objBQ.KSToken + @"' as authenticationToken,
                             D.customerId,
-                            '"+objPB.customerPoNumber+@"' as  customerPO,
-                            '" + objPB.shipToId + @"' as shipToId, 
-                            carrierId, CONVERT(varchar(10),'"+ objBQ.ProcessDay + @"', 120) shipDate, '"+ objPB.comments + @"' comments
+                            '" + objPB.customerPoNumber + @"' as  customerPO,";
+
+                        if (objPB.shipToId.Length>0)
+                        { strSQL += "" + objPB.shipToId + @" as shipToId, "; }
+
+                            strSQL += "carrierId, CONVERT(varchar(10),'" + objBQ.ProcessDay + @"', 120) shipDate, '"+ objPB.comments + @"' comments
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             WHERE poItemId="+ objBQ.poItemId + @"
@@ -270,6 +273,20 @@ namespace BQ
                             LEFT JOIN dbo." + objBQ.DataFrom + @"_BoxType BT ON D.boxType=BT.CODE
                             WHERE poItemId=" + objBQ.poItemId + @"
                             FOR JSON PATH;  
+                    
+                         SELECT      
+                            POB.productId as 'productId'
+                            ,convert(int,POB.bunches) AS 'bunches'
+		                    ,convert(int,POB.stemsBunch) AS stemsBunch
+		                    ,convert(numeric(18,2), POB.cost) AS cost
+		                    ,convert(numeric(18,2), PBB.price) AS price
+                           
+                            FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_BreakDowns POB ON POB.details_Id=D.details_Id
+		                    INNER JOIN KS_PrebooksBreakDowns PBB ON PBB.productId=POB.productId
+                            WHERE poItemId=" + objBQ.poItemId + @"
+		                    FOR JSON PATH;
                                 ";
 
             string constr = DB_Base.DB_STR;
@@ -333,6 +350,22 @@ namespace BQ
             string strSQL = @"
             select top 1 * from KS_Prebooks;
             select top 1 * from KS_PrebooksDetails;
+            select top 1 * from KS_PrebooksBreakDowns;";
+            string constr = DB_Base.DB_STR;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+            DataSet ds = new DataSet();
+            adpt.Fill(ds);
+            adpt.Dispose();
+            con.Close();
+            con.Dispose();
+            return ds;
+
+        }
+        public DataSet GetPrebooksBreakDownColumnName()
+        {
+            string strSQL = @"
             select top 1 * from KS_PrebooksBreakDowns;";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);
