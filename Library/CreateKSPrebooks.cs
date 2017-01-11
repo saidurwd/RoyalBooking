@@ -41,7 +41,7 @@ namespace BQ
             }
             return ds;
         }
-        
+
         public void SendmailIfException(string _message)
         {
             System.Net.Mail.MailMessage Mail = new System.Net.Mail.MailMessage("blumensoft@royalcorp.net", "faruka@aphix.ca");
@@ -66,7 +66,7 @@ namespace BQ
         {
             DataSet ds = null;
             string KSToken = objBQ.KSToken;
-            
+
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.kometsales.com/api/prebook.create");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
@@ -77,9 +77,14 @@ namespace BQ
             json = json.Remove(json.Length - 2); //Remove last two char
             json = json.Substring(2, json.Length - 2); //Remove first two
             string jsonDetails = dsJson.Tables[1].Rows[0][0].ToString();
-            string jsonBreakDowns = dsJson.Tables[2].Rows[0][0].ToString();
             jsonDetails = jsonDetails.Remove(jsonDetails.Length - 1);
             jsonDetails = jsonDetails.Substring(1, jsonDetails.Length - 1);
+
+            string jsonBreakDowns = "";
+            if (dsJson.Tables[2].Rows.Count > 0)
+            {
+                jsonBreakDowns = dsJson.Tables[2].Rows[0][0].ToString();
+            }
             
             if (jsonBreakDowns.Length > 0)
             {
@@ -103,7 +108,7 @@ namespace BQ
 
             return ds;
         }
-        
+
         protected void CreateLogTime(string _localLogPath, string _message)
         {
             CreateLogFiles Err = new CreateLogFiles();

@@ -410,7 +410,8 @@ namespace RoyalBooking
                             }
                         }
 
-                        
+                        DateTime[] dates = { new DateTime(2008, 10, 6), new DateTime(2008, 10, 7) }; //etc....
+                        var mondays = dates.Where(d => d.DayOfWeek == DayOfWeek.Monday); // = {10/6/2008}
 
                         //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         //DataSet dsPO = objK.DeleteKSPOById(objBQ);
