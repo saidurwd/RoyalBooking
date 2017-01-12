@@ -10,19 +10,46 @@ namespace BQ
 {
     public class UpdateKSPrebook
     {
-        public void UpdatePrebookDeleteStatus(DC_BQ objBQ)
+        public void UpdatePrebookDeleteStatus(DC_BQ objBQ, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate)
         {
-            UpdatePrebookDeleteStatusById(objBQ);
+            UpdatePrebookDeleteStatusById(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
         }
         
-        private void UpdatePrebookDeleteStatusById(DC_BQ objBQ)
+        private void UpdatePrebookDeleteStatusById(DC_BQ objBQ, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate)
         {
-            string strSQL = @"UPDATE " + objBQ.DataFrom + "_KS_PrebooksDetails SET DeleteStatus=1 WHERE prebookItemId=" + objBQ.ProductId+ @"
-                INSERT INTO dbo.Prebook_Delete_Log(PrebookId,PrebookItemId,number,productDescription, [source], truckDate) VALUES(
-                "+ objBQ.PrebooksId + ", "+ objBQ.ProductId + ", '"+ objBQ.InvoiceNumber + "', '"+ objBQ.SearchSrting.Replace("'","''") + "','"+ objBQ.DataFrom + "',convert(datetime,'" + objBQ.ProcessDay + @"', " + BQ.DB_Base.BQDataRegion + @")
-            )
-            ";
+            string strSQL = @"
+                UPDATE " + objBQ.DataFrom + "_PB_PO_Details SET DeleteStatus=" + IsSuccess + " WHERE prebookItemId=" + objBQ.ProductId + @";
+                INSERT INTO dbo.PB_PO_Details_Delete_Move_log(orderType, stemsBunch, notes, customField1, standingOrder, details_Id, bunches, units, totalBoxes, unitType, carrierName, referenceNumber, poItemId, customerId, lineItemStatus, productDescription, 
+                         productId, boxType, customerName, totalUnits, markCode, prebook, unitCost, prebookTruckDate, quantityConfirmed, 
+                        carrierId, totalCost, purchaseOrders_Id, prebookItemId, PO_number, id_PO, DeleteStatus, [source], truckDate, 
+                        DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, IsNew)
+                        SELECT orderType, stemsBunch, notes, customField1, standingOrder, details_Id, bunches, units, totalBoxes, unitType, carrierName, referenceNumber, poItemId, customerId, lineItemStatus, productDescription, 
+                         productId, boxType, customerName, totalUnits, markCode, prebook, unitCost, prebookTruckDate, quantityConfirmed, 
+                        carrierId, totalCost, purchaseOrders_Id, prebookItemId, PO_number, id_PO, " + IsSuccess + @", '" + objBQ.DataFrom + "',convert(datetime,'" + objBQ.ProcessDay + @"'),
+                        '" + DeleteOrMove + "', " + IsSuccess + ", '" + NewPrebookId + "', '" + NewTruckDate + @"', 1 
+                        FROM " + objBQ.DataFrom + "_PB_PO_Details WHERE prebookItemId=" + objBQ.ProductId + @"";
+            string constr = DB_Base.DB_STR;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+            object objResult = null;
 
+            SqlCommand dbCommand = adpt.SelectCommand;
+            dbCommand.CommandTimeout = 0;
+            dbCommand.CommandText = strSQL;
+            dbCommand.CommandType = CommandType.Text;
+
+            objResult = dbCommand.ExecuteScalar();
+
+
+        }
+        public void UpdatePrebookDeleteStatusAll()
+        {
+            UpdatePrebookDeleteStatus();
+        }
+        private void UpdatePrebookDeleteStatus()
+        {
+            string strSQL = @"UPDATE PB_PO_Details_Delete_Move_log SET IsNew=0;";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);
             con.Open();

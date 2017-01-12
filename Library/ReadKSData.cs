@@ -15,10 +15,10 @@ namespace BQ
             DataSet ds = GetInvoiceQueryResult();
             return ds;
         }
-        public DataSet ReadMissingInvoiceData()
+        public DataTable ReadDeleteMoveLog()
         {
-            DataSet ds = GetMissingInvoiceQueryResult();
-            return ds;
+            DataTable dt = GetDeleteMoveLog();
+            return dt;
         }
         public DataSet ReadVendorData()
         {
@@ -71,6 +71,21 @@ namespace BQ
             con.Close();
             con.Dispose();
             return ds;
+
+        }
+        private DataTable GetDeleteMoveLog()
+        {
+            string strSQL = @"SELECT * FROM [dbo].[PB_PO_Details_Delete_Move_log] WHERE IsNew=1;";
+            string constr = DB_Base.DB_STR;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+            DataSet ds = new DataSet();
+            adpt.Fill(ds);
+            adpt.Dispose();
+            con.Close();
+            con.Dispose();
+            return ds.Tables[0];
 
         }
         public DataSet GetMissingInvoiceQueryResult()

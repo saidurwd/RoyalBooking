@@ -236,7 +236,7 @@ namespace RoyalBooking
             string FileDate = Year.ToString() + "-" + Month.ToString() + "-" + Date.ToString() + " " + Hour.ToString() + " " + Minute.ToString() + " " + Second.ToString();
             filename = filename + "-" + FileDate;
             filename = filename.Replace(" ", "_");
-
+            string strFilePath = "";
             if (dt.Rows.Count > 0)
             {
                 System.Web.UI.WebControls.DataGrid grid =
@@ -246,7 +246,7 @@ namespace RoyalBooking
 
 
                 grid.DataBind();
-                string strFilePath = path + "logs/" + filename + ".xls";
+                strFilePath = path + "logs/" + filename + ".xls";
 
                 using (StreamWriter sw = new StreamWriter(strFilePath))
                 {
@@ -257,7 +257,11 @@ namespace RoyalBooking
                 }
 
             }
+                       
+
             return filename + ".xls";
+
+            
         }
         private string CreateListOfItem2()
         {
@@ -284,6 +288,8 @@ namespace RoyalBooking
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+            objUpdate.UpdatePrebookDeleteStatusAll();
             try
             {
                 foreach (GridViewRow gr in GridView1.Rows)
@@ -311,9 +317,9 @@ namespace RoyalBooking
                         objBQ.ProcessDay = _txtTruckDate.Text;
 
 
-                        ImportKSPrebooks objIP = new ImportKSPrebooks();
-                        DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
-                        objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
+                        //ImportKSPrebooks objIP = new ImportKSPrebooks();
+                        //DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
+                        //objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
 
                         DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
                         DataSet dsPO = objK.DeleteKSPOById(objBQ);
@@ -321,8 +327,22 @@ namespace RoyalBooking
 
                         if (ds.Tables[0].Rows[0][1].ToString() == "1")
                         {
-                            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
-                            objUpdate.UpdatePrebookDeleteStatus(objBQ);
+                            string DeleteOrMove = "Delete: Delete Success";
+                            string IsSuccess = "1";
+                            string NewPrebookId = "";
+                            string NewTruckDate = "";
+                            //Update Database
+                            objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
+                        }
+                        else {
+                            string DeleteOrMove = "Delete: fail";
+                            string IsSuccess = "0";
+                            string NewPrebookId = "";
+                            string NewTruckDate = "";
+                            //Update Database
+                            objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
                         }
 
                         CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
@@ -335,12 +355,16 @@ namespace RoyalBooking
             }
             finally
             {
-
+                ReadKSData objK = new BQ.ReadKSData();
+                DataTable dt = objK.ReadDeleteMoveLog();
+                GenerateExcelAndDownload(dt);
             }
         }
         protected void btnMove_Click(object sender, EventArgs e)
         {
             string sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+            UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
+            objUpdate.UpdatePrebookDeleteStatusAll();
             try
             {
                 foreach (GridViewRow gr in GridView1.Rows)
@@ -373,62 +397,108 @@ namespace RoyalBooking
 
                         ImportKSPrebooks objIP = new ImportKSPrebooks();
                         DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
-                        objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
-                        objPB.customerId = dsPrebook.Tables["prebooks"].Rows[0]["customerId"].ToString();
+                        if (dsPrebook.Tables.Contains("prebooks"))
+                        {
+                            objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
+                            objPB.customerId = dsPrebook.Tables["prebooks"].Rows[0]["customerId"].ToString();
 
-                        if (dsPrebook.Tables["prebooks"].Columns.Contains("customerPoNumber"))
-                        {
-                            objPB.customerPoNumber = dsPrebook.Tables["prebooks"].Rows[0]["customerPoNumber"].ToString();
-                        }
-                        if (dsPrebook.Tables["prebooks"].Columns.Contains("comments"))
-                        {
-                            objPB.comments = dsPrebook.Tables["prebooks"].Rows[0]["comments"].ToString();
-                        }
-                        if (dsPrebook.Tables["prebooks"].Columns.Contains("shipName"))
-                        {
-                            string _shipName = dsPrebook.Tables["prebooks"].Rows[0]["shipName"].ToString();
-                            if (_shipName != "")
+                            if (dsPrebook.Tables["prebooks"].Columns.Contains("customerPoNumber"))
                             {
-                                DataSet dsShipTo = objIP.getCustomerShipTo(objBQ, objPB);
-                                string _shipToId = dsShipTo.Tables[1].Select("name='" + _shipName + "'").CopyToDataTable().Rows[0]["id"].ToString(); ;
-                                objPB.shipToId = _shipToId;
+                                objPB.customerPoNumber = dsPrebook.Tables["prebooks"].Rows[0]["customerPoNumber"].ToString();
                             }
+                            if (dsPrebook.Tables["prebooks"].Columns.Contains("comments"))
+                            {
+                                objPB.comments = dsPrebook.Tables["prebooks"].Rows[0]["comments"].ToString();
+                            }
+                            if (dsPrebook.Tables["prebooks"].Columns.Contains("shipName"))
+                            {
+                                string _shipName = dsPrebook.Tables["prebooks"].Rows[0]["shipName"].ToString();
+                                if (_shipName != "")
+                                {
+                                    DataSet dsShipTo = objIP.getCustomerShipTo(objBQ, objPB);
+                                    string _shipToId = dsShipTo.Tables[1].Select("name='" + _shipName + "'").CopyToDataTable().Rows[0]["id"].ToString(); ;
+                                    objPB.shipToId = _shipToId;
+                                }
+                            }
+                            if (dsPrebook.Tables.Contains("details"))
+                            {
+                                DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
+                                string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
+                                objPB.unitPrice = _unitPrice;
+                                if (dsPrebook.Tables.Contains("breakdowns"))
+                                {
+                                    try
+                                    {
+                                        DataTable dtPBBreakDown = dsPrebook.Tables["breakdowns"].Select("details_Id=" + dtPBD.Rows[0]["details_Id"].ToString() + "").CopyToDataTable();
+                                        objIP.SaveBreakDown(dtPBBreakDown, objBQ);
+                                    }
+                                    catch {
+
+                                    }
+                                }
+                                if (dsPrebook.Tables["details"].Columns.Contains("markCode"))
+                                {
+                                    objPB.markCode = dsPrebook.Tables["details"].Rows[0]["markCode"].ToString();
+                                }
+                            }
+
+
+                            DateTime[] dates = { new DateTime(2008, 10, 6), new DateTime(2008, 10, 7) }; //etc....
+                            var mondays = dates.Where(d => d.DayOfWeek == DayOfWeek.Monday); // = {10/6/2008}
+
+                            DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
+                            DataSet dsPO = objK.DeleteKSPOById(objBQ);
+                            DataSet ds = objK.DeleteKSPrebooksById(objBQ);
+
+                            if (ds.Tables[0].Rows[0][1].ToString() == "1")
+                            {
+                                //Create Prebook
+                                CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
+                                DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ, objPB);
+                                if (dsCreate.Tables[0].Rows[0]["status"].ToString() == "1")
+                                {
+                                    string DeleteOrMove = "Delete and Move: Success";
+                                    string IsSuccess = "1";
+                                    string NewPrebookId = dsCreate.Tables[0].Rows[0]["prebookNumber"].ToString();
+                                    string NewTruckDate = objBQ.ProcessDay;
+                                    //Update Database
+                                    objUpdate = new BQ.UpdateKSPrebook();
+                                    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
+                                }
+                                else
+                                {
+                                    string DeleteOrMove = "Delete and Move: Delete Success, Move fail";
+                                    string IsSuccess = "0";
+                                    string NewPrebookId = "";
+                                    string NewTruckDate = "";
+                                    //Update Database
+                                    objUpdate = new BQ.UpdateKSPrebook();
+                                    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
+                                }
+                            }
+                            else
+                            {
+                                string DeleteOrMove = "Delete and Move: All fail";
+                                string IsSuccess = "0";
+                                string NewPrebookId = "";
+                                string NewTruckDate = "";
+                                //Update Database
+                                objUpdate = new BQ.UpdateKSPrebook();
+                                objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
+                            }
+                            CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
                         }
-                        if (dsPrebook.Tables.Contains("details"))
+                        else
                         {
-                            DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
-                            string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
-                            objPB.unitPrice = _unitPrice;
-                            if (dsPrebook.Tables.Contains("breakdowns"))
-                            {
-                                DataTable dtPBBreakDown = dsPrebook.Tables["breakdowns"].Select("details_Id=" + dtPBD.Rows[0]["details_Id"].ToString() + "").CopyToDataTable();
-                                objIP.SaveBreakDown(dtPBBreakDown, objBQ);
-                            }
-                            if (dsPrebook.Tables["details"].Columns.Contains("markCode"))
-                            {
-                                objPB.markCode = dsPrebook.Tables["details"].Rows[0]["markCode"].ToString();
-                            }
+                            string DeleteOrMove = "Delete and Move: Getting data from old Prebook fail";
+                            string IsSuccess = "0";
+                            string NewPrebookId = "";
+                            string NewTruckDate = "";
+                            //Update Database
+                            objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
                         }
 
-                        DateTime[] dates = { new DateTime(2008, 10, 6), new DateTime(2008, 10, 7) }; //etc....
-                        var mondays = dates.Where(d => d.DayOfWeek == DayOfWeek.Monday); // = {10/6/2008}
-
-                        //DeleteKSPrebooks objK = new BQ.DeleteKSPrebooks();
-                        //DataSet dsPO = objK.DeleteKSPOById(objBQ);
-                        //DataSet ds = objK.DeleteKSPrebooksById(objBQ);
-
-                        //if (ds.Tables[0].Rows[0][1].ToString() == "1")
-                        //{
-                        //Create Prebook
-                        CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
-                        DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ, objPB);
-
-                        //    //Update Database
-                        //    //UpdateKSPrebook objUpdate = new BQ.UpdateKSPrebook();
-                        //    //objUpdate.UpdatePrebookDeleteStatus(objBQ);
-                        //}
-
-                        //CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + ds.Tables[0].Rows[0][0].ToString());
                     }
                 }
             }
@@ -438,8 +508,36 @@ namespace RoyalBooking
             }
             finally
             {
-
+                ReadKSData objK = new BQ.ReadKSData();
+                DataTable dt = objK.ReadDeleteMoveLog();
+                GenerateExcelAndDownload(dt);
             }
+        }
+        private void GenerateExcelAndDownload(DataTable dt)
+        {
+            string attachment = "attachment; filename=DeleteMoveLog.xls";
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", attachment);
+            Response.ContentType = "application/vnd.ms-excel";
+            string tab = "";
+            foreach (DataColumn dc in dt.Columns)
+            {
+                Response.Write(tab + dc.ColumnName);
+                tab = "\t";
+            }
+            Response.Write("\n");
+            int i;
+            foreach (DataRow dr in dt.Rows)
+            {
+                tab = "";
+                for (i = 0; i < dt.Columns.Count; i++)
+                {
+                    Response.Write(tab + dr[i].ToString());
+                    tab = "\t";
+                }
+                Response.Write("\n");
+            }
+            Response.End();
         }
         protected void CreateErrorLog(string _localLogPath, string _message)
         {
