@@ -556,4 +556,25 @@ Parámetros de salida:
 status (integer:1): transaction status. 1 for success or 0 for failure.
 message (string:500): description of the status of the transaction.
 
+    static void Main(string[] args)
+       {
+             DateTime startDate=new DateTime(2011,3,1);
+             DateTime endDate = DateTime.Now;
+ 
+             TimeSpan diff = endDate - startDate;
+             int days = diff.Days;
+             for (var i = 0; i <= days; i++)
+             {
+                 var testDate = startDate.AddDays(i);
+                 switch (testDate.DayOfWeek)
+                 {
+                     case DayOfWeek.Saturday:
+                     case DayOfWeek.Sunday:
+                         Console.WriteLine(testDate.ToShortDateString());
+                         break;
+                 }
+             }
+           Console.ReadLine();
+       }
+
     */
