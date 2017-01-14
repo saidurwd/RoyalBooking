@@ -20,7 +20,7 @@ namespace BQ
         public static string KSRFGDataFrom = "RFG";
         public static string KSJOYDataFrom = "Joy";
         public static string KSDemoDataFrom = "Demo";
-        public static string KSGmbHDataFrom = "Demo";
+        public static string KSGmbHDataFrom = "GmBh";
 
         //public const string DB_STR = @"Data Source=.\BLUMENSOFT;Initial Catalog=BQ;Persist Security Info=True;User ID=sa;Password=sql@2012; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
         public const string DB_STR = @"Data Source=.\SQL2016;Initial Catalog=BQAZURE;Persist Security Info=True;User ID=sa;Password=sql2016; Min Pool Size=5;Max Pool Size=200;Connect Timeout=0;MultipleActiveResultSets=True;";
@@ -77,7 +77,7 @@ namespace BQ
         public static string Call_From_Today_Sales = "Today Sales";
         public static string Call_From_Weekly_Sales = "Weekly Sales";
         public static string Call_From_Day_8th_Sales = "Day_8th Sales";
-        public static string Call_From_Monthly_Sales = "Monthly Sales";
+        public static string Call_From_Monthly_Sales = "PO Date Range";
         public static string Call_From_Import_Prebooks_Date_Duration = "Import Prebook Date Duration";
         public static string Call_From_Credit_60_1 = "Credit 60-1";
 

@@ -27,10 +27,14 @@ namespace RoyalBooking
                 {
                     Session["CompanyName"] = "Royal Flowers Inc. International";
                 }
-                else
+                else if (companyID == "3")
                 {
                     Session["CompanyName"] = "Royal Flowers GmbH";
-                }                
+                }
+                else
+                {
+                    Session["CompanyName"] = "Demo & Flowers";
+                }
             }
 
             Label1.Text = Session["CompanyName"].ToString();

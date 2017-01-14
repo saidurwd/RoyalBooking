@@ -236,7 +236,7 @@ namespace RoyalBooking
             {
                 ReadKSPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
             }
-            
+
         }
 
         protected void ReadKSPrebooks(string _KSToken, string _DataFrom)
@@ -337,7 +337,7 @@ namespace RoyalBooking
             string companyID = Session["CompanyID"].ToString();
             if (companyID == "1")
             {
-                _KSToken = BQ.DB_Base.KSRFIDomesticToken; _KSDataFrom=BQ.DB_Base.KSRFIDomesticDataFrom;
+                _KSToken = BQ.DB_Base.KSRFIDomesticToken; _KSDataFrom = BQ.DB_Base.KSRFIDomesticDataFrom;
             }
             else if (companyID == "2")
             {
@@ -346,7 +346,7 @@ namespace RoyalBooking
             else if (companyID == "3")
             {
                 _KSToken = BQ.DB_Base.KSGmbHToken; _KSDataFrom = BQ.DB_Base.KSGmbHDataFrom;
-                
+
             }
             else
             {
@@ -377,10 +377,10 @@ namespace RoyalBooking
                         objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
                         objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
                         objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
-                        
+
                         objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
                         objBQ.ProcessDay = _txtTruckDate.Text;
-                        
+
                         //ImportKSPrebooks objIP = new ImportKSPrebooks();
                         //DataSet dsPrebook = objIP.getPrebookSummary(_txtTruckDate.Text, objBQ);
                         //objBQ.InvoiceNumber = dsPrebook.Tables["prebooks"].Rows[0]["id"].ToString();
@@ -514,24 +514,31 @@ namespace RoyalBooking
                                 }
                                 if (dsPrebook.Tables.Contains("details"))
                                 {
-                                    DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
-                                    string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
-                                    objPB.unitPrice = _unitPrice;
-                                    if (dsPrebook.Tables.Contains("breakdowns"))
+                                    try
                                     {
-                                        try
+                                        DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
+                                        string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
+                                        objPB.unitPrice = _unitPrice;
+                                        if (dsPrebook.Tables.Contains("breakdowns"))
                                         {
-                                            DataTable dtPBBreakDown = dsPrebook.Tables["breakdowns"].Select("details_Id=" + dtPBD.Rows[0]["details_Id"].ToString() + "").CopyToDataTable();
-                                            objIP.SaveBreakDown(dtPBBreakDown, objBQ);
-                                        }
-                                        catch
-                                        {
+                                            try
+                                            {
+                                                DataTable dtPBBreakDown = dsPrebook.Tables["breakdowns"].Select("details_Id=" + dtPBD.Rows[0]["details_Id"].ToString() + "").CopyToDataTable();
+                                                objIP.SaveBreakDown(dtPBBreakDown, objBQ);
+                                            }
+                                            catch
+                                            {
 
+                                            }
+                                        }
+                                        if (dsPrebook.Tables["details"].Columns.Contains("markCode"))
+                                        {
+                                            objPB.markCode = dsPrebook.Tables["details"].Rows[0]["markCode"].ToString();
                                         }
                                     }
-                                    if (dsPrebook.Tables["details"].Columns.Contains("markCode"))
+                                    catch
                                     {
-                                        objPB.markCode = dsPrebook.Tables["details"].Rows[0]["markCode"].ToString();
+
                                     }
                                 }
 

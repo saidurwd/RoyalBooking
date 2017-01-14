@@ -144,36 +144,6 @@ namespace BQ
             }
 
             return ds;
-
-            //DataSet ds = null;
-            //string KSToken = objBQ.KSToken;
-            //Uri uri = new Uri("https://api.kometsales.com/api/purchase.order.item.delete");
-            //if (uri.Scheme == Uri.UriSchemeHttps)
-            //{
-            //    try
-            //    {
-            //        string result = "";
-            //        // Create the web request  
-            //        HttpWebRequest request = WebRequest.Create("https://api.kometsales.com/api/purchase.order.item.delete?authenticationToken=" + KSToken + "&poItemId=" + objBQ.poItemId + "") as HttpWebRequest;
-            //        request.Method = "POST";
-            //        request.ContentType = "application/json";
-            //        // Get response  
-            //        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //        {
-            //            // Get the response stream  
-            //            StreamReader reader = new StreamReader(response.GetResponseStream());
-            //            // Read the whole contents and return as a string  
-            //            result = reader.ReadToEnd();
-            //            ds = DerializeDataTable(result);
-            //        }
-            //    }
-            //    catch (Exception exp)
-            //    { }
-            //    finally
-            //    { }
-
-            //}
-            //return ds;
         }
         protected void CreateLogTime(string _localLogPath, string _message)
         {

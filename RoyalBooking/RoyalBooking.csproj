@@ -100,6 +100,7 @@
   <ItemGroup>
     <Content Include="company.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="login.Master.designer.cs">
       <DependentUpon>login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="prebooks.aspx.cs">
       <DependentUpon>prebooks.aspx</DependentUpon>
