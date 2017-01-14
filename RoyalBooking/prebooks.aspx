@@ -117,7 +117,7 @@
                                 <span id="inputSuccess3Status3" class="sr-only">(success)</span>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                                <input class="form-control has-feedback-left hasDatePicker" id="txtDateMoveEnd" placeholder="End" aria-describedby="inputSuccess4Status4" type="text" runat="server">
+                                <asp:TextBox runat="server" ID="txtDateMoveEnd" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess4Status4" type="text"/>
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess4Status4" class="sr-only">(success)</span>
                             </div>
