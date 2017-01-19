@@ -373,7 +373,7 @@ namespace RoyalBooking
 
                         BQ.DC_BQ objBQ = new BQ.DC_BQ();
                         objBQ.KSToken = _KSToken;
-                        objBQ.DataFrom = _KSToken;
+                        objBQ.DataFrom = _KSDataFrom;
                         objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
                         objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
                         objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id

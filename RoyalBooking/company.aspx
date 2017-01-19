@@ -14,7 +14,7 @@
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx?cid=1" runat="server">
-                                    <img class="img-responsive" alt="" src="../images/logo.png">
+                                    <img class="img-responsive" alt="" src="images/logo.png">
                                 </asp:HyperLink>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <asp:HyperLink ID="HyperLink5" NavigateUrl="~/index.aspx?cid=2" runat="server">
-                                    <img class="img-responsive" alt="" src="../images/logo.png">
+                                    <img class="img-responsive" alt="" src="images/logo.png">
                                 </asp:HyperLink>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <asp:HyperLink ID="HyperLink6" NavigateUrl="~/index.aspx?cid=3" runat="server">
-                                    <img class="img-responsive" alt="" src="../images/logo.png">
+                                    <img class="img-responsive" alt="" src="images/logo.png">
                                 </asp:HyperLink>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="thumbnail" style="height: 100px;">
                                 <asp:HyperLink ID="HyperLink7" NavigateUrl="~/index.aspx?cid=4" runat="server">
-                                    <img class="img-responsive" alt="" src="../images/logo.png">
+                                    <img class="img-responsive" alt="" src="images/logo.png">
                                 </asp:HyperLink>
                             </div>
                         </div>

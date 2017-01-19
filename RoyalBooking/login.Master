@@ -10,22 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- FAVICONS -->
-    <link rel="shortcut icon" href="../favicon/favicon/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../favicon/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon/favicon/favicon.ico" type="image/x-icon">
 
     <title>Royal Booking</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../css/custom.min.css" rel="stylesheet">
+    <link href="css/custom.min.css" rel="stylesheet">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
