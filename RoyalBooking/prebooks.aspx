@@ -9,7 +9,10 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
                     <input class="form-control" id="txtdescription" placeholder="Product Description" type="text" runat="server">
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-4">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                    <input class="form-control" id="txtvendor" placeholder="Vendor" type="text" runat="server">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-3 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">
                     PO Date:
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
@@ -88,7 +91,11 @@
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <asp:Button ID="Button3" runat="server" Text="Delete" OnClientClick="deleteConfirm();" OnClick="btnDelete_Click" CssClass="btn btn-danger btn-lg btn-block" />
                                 </div>
-                                <div class="col-md-10 col-sm-10 col-xs-10"></div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                    <input class="form-control" id="txtPercent" placeholder="" type="text" runat="server">
+                                    <span class="fa fa-percent form-control-feedback right" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-8"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <button type="button" id="btnMoveModal" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
                                 </div>
@@ -112,12 +119,12 @@
                                 New Date Range:           
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                                <asp:TextBox runat="server" ID="txtDateMoveStart" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text"/>
+                                <asp:TextBox runat="server" ID="txtDateMoveStart" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text" />
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess3Status3" class="sr-only">(success)</span>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12 form-group">
-                                <asp:TextBox runat="server" ID="txtDateMoveEnd" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess4Status4" type="text"/>
+                                <asp:TextBox runat="server" ID="txtDateMoveEnd" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess4Status4" type="text" />
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess4Status4" class="sr-only">(success)</span>
                             </div>
@@ -125,7 +132,7 @@
                         <div class="clearfix"></div>
                         <hr />
                         <p>
-                            Are you sure you want to move <span id="spnMoveProduct"></span> to the date range <span id="spnDateMoveStart"></span> to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span> prebooks and according Pos?
+                            Are you sure you want to move <span id="spnMoveProduct"></span>to the date range <span id="spnDateMoveStart"></span>to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span>prebooks and according Pos?
                         </p>
                     </div>
                     <div class="modal-footer">
