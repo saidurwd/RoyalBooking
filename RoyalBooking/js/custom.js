@@ -293,7 +293,7 @@ $('#single_cal2').daterangepicker({
 function deleteConfirm() {
     var mvProd = $('input:checked').map(function () { return $(this).closest('tr').find('td:eq(6)').text(); }).get().join(', ');
     var total = $('input:checked').length;
-    var percent = $("#txtPercent").val();
+    var percent = $("#ContentPlaceHolder1_txtPercent").val();
     var result = confirm("Are you sure you want to delete " + percent + "% " + mvProd + " from " + total + " prebooks and according Pos?");
     if (result) {
         return true;
