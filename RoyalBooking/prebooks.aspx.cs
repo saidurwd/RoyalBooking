@@ -249,6 +249,7 @@ namespace RoyalBooking
                 objBQ.FromDate = txtDateFrom.Value;
                 objBQ.ToDate = txtDateTo.Value;
                 objBQ.DataFrom = _DataFrom;
+                objBQ.vendorName = txtvendor.Value;
                 objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
 
                 ReadKSData objK = new BQ.ReadKSData();

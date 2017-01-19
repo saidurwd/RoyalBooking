@@ -233,11 +233,13 @@ namespace BQ
                             CASE WHEN D.orderType='P' then 'Prebook'
                             WHEN D.orderType='S' then 'Standing Order'
                             WHEN D.orderType='D' then 'Double'
-                            ELSE '' END orderType
+                            ELSE '' END orderType,
+                            P.vendorName
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             WHERE P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 AND P.shipDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                                AND P.vendorName like '%" + objBQ.vendorName.Replace("'", "'") + @"%' 
                                 AND D.prebookItemId IS NOT NULL AND isnull(D.DeleteStatus,0)<>1 AND D.productDescription like '%" + objBQ.SearchSrting.Replace("'", "'") + @"%' 
                                 AND (D.orderType='" + objBQ.OrderStatus + "' OR '" + objBQ.OrderStatus + @"'='')
                                 ORDER BY P.shipDate

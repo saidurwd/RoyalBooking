@@ -296,6 +296,18 @@ namespace BQ
                 p_OrderStatus = value;
             }
         }
+        private string p_VendorName = String.Empty;
+        public string vendorName
+        {
+            get
+            {
+                return p_VendorName;
+            }
+            set
+            {
+                p_VendorName = value;
+            }
+        }
     }
 
     public class Prebooks
