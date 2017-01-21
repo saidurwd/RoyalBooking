@@ -39,6 +39,10 @@ namespace BQ
         {
             return GePOJSON(objBQ, objPB);
         }
+        public DataSet ReadKSPOJSONVA(DC_BQ objBQ, Prebooks objPB, string _prebookId)
+        {
+            return GePOJSONVA(objBQ, objPB, _prebookId);
+        }
         public DataSet GetInvoiceQueryResult()
         {
             string strSQL = @"SELECT     
@@ -289,6 +293,58 @@ namespace BQ
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             LEFT JOIN dbo." + objBQ.DataFrom + @"_BoxType BT ON D.boxType=BT.CODE
                             WHERE poItemId=" + objBQ.poItemId + @"
+                            FOR JSON PATH;  
+                    
+                         SELECT      
+                            POB.productId as 'productId'
+                            ,convert(int,POB.bunches) AS 'bunches'
+		                    ,convert(int,POB.stemsBunch) AS stemsBunch
+		                    ,convert(numeric(18,2), POB.cost) AS cost
+		                    ,convert(numeric(18,2), PBB.price) AS price
+                           
+                            FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_BreakDowns POB ON POB.details_Id=D.details_Id
+		                    INNER JOIN KS_PrebooksBreakDowns PBB ON PBB.productId=POB.productId
+                            WHERE poItemId=" + objBQ.poItemId + @"
+		                    FOR JSON PATH;
+                                ";
+
+            string constr = DB_Base.DB_STR;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+            DataSet ds = new DataSet();
+            adpt.Fill(ds);
+            adpt.Dispose();
+            con.Close();
+            con.Dispose();
+            return ds;
+
+        }
+
+        private DataSet GePOJSONVA(DC_BQ objBQ, Prebooks objPB, string _prebookId)
+        {
+            string strSQL = @"
+                            
+                        SELECT 
+                            '" + objBQ.KSToken + @"' as authenticationToken
+                            , "+_prebookId+ @" prebookId
+                            , V. inventoryId inventoryIds
+                            ,convert(int,D.totalBoxes) - " + objPB.pbQty + @" as 'quantity'
+                            ,convert(numeric(18,2)," + objPB.unitPrice + @") as 'price'
+                            ,'" + objPB.markCode + @"' as 'markCode'
+                            ,BT.ID as 'boxTypeId'
+                            ,convert(int,D.stemsBunch) as 'stemsBunch'
+                            ,D.unitType as 'unitType'
+                            ,convert(int,D.bunches) as 'bunches'                            
+                       FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
+                            INNER JOIN dbo." + objBQ.DataFrom + @"_VA_inventoryItems V on V.companyProductId=D.productId
+                            LEFT JOIN dbo." + objBQ.DataFrom + @"_BoxType BT ON D.boxType=BT.CODE
+                       WHERE poItemId=" + objBQ.poItemId + @"
+                            AND convert(datetime, V.[availableFrom],101)>=  convert(datetime,'" + objBQ.ProcessDay + @"', " + BQ.DB_Base.BQDataRegion + @") 
+                            AND convert(datetime, V.[availableTo],101)<= convert(datetime,'" + objBQ.ProcessDay + @"', " + BQ.DB_Base.BQDataRegion + @") 
                             FOR JSON PATH;  
                     
                          SELECT      

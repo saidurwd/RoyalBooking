@@ -57,13 +57,13 @@ namespace BQ
             {
                 //DeleteTempData(objBQ);
                 ds = getDataList(objBQ);
-                //if (ds.Tables[0].Rows[0][0].ToString() != "credits not found.")
-                //{
-                //    if (ds.Tables.Contains("inventoryItems"))
-                //    {
-                //        SaveDataInTempTable(ds, objBQ);
-                //    }
-                //}
+                if (ds.Tables[0].Rows[0][0].ToString() != "credits not found.")
+                {
+                    if (ds.Tables.Contains("inventoryItems"))
+                    {
+                        SaveDataInTempTable(ds, objBQ);
+                    }
+                }
             }
             catch (Exception exp)
             {

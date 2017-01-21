@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
-                                    <asp:Button ID="btnImportVA" runat="server" Text="Import VA" CssClass="btn btn-primary btn-lg" />
+                                    <asp:Button ID="btnImportVA" runat="server" Text="Import VA" OnClick="btnImportVA_Click" CssClass="btn btn-primary btn-lg" />
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
