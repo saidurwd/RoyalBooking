@@ -12,7 +12,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
                     <input class="form-control" id="txtvendor" placeholder="Vendor" type="text" runat="server">
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-3 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">
                     PO Date:
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
@@ -22,9 +22,6 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                     <asp:Button ID="Button1" runat="server" Text="Import PO" OnClick="Button1_Click" CssClass="btn btn-primary pull-right btn-block" />
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                    <asp:Button ID="btnImportVA" runat="server" Text="Import VA" CssClass="btn btn-primary pull-right btn-block" />
                 </div>
             </div>
             <div class="row">
@@ -100,7 +97,11 @@
                                     <input class="form-control" id="txtPercent" placeholder="" type="text" runat="server">
                                     <span class="fa fa-percent form-control-feedback right" aria-hidden="true"></span>
                                 </div>
-                                <div class="col-md-8 col-sm-8 col-xs-8"></div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <asp:Button ID="btnImportVA" runat="server" Text="Import VA" CssClass="btn btn-primary btn-lg" />
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <button type="button" id="btnMoveModal" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
                                 </div>
