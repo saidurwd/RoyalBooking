@@ -234,7 +234,7 @@ namespace BQ
                             WHEN D.orderType='S' then 'Standing Order'
                             WHEN D.orderType='D' then 'Double'
                             ELSE '' END orderType,
-                            P.vendorName
+                            P.vendorName, CONVERT(INT, D.totalBoxes) totalBoxes, D.boxType
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             WHERE P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
@@ -278,7 +278,7 @@ namespace BQ
                             ,productId as 'productId'
                             ,BT.ID as 'boxTypeId'
                             ,unitType as 'unitType'
-                            ,convert(int,D.totalBoxes) as 'boxes'
+                            ,convert(int,D.totalBoxes) - "+ objPB.pbQty +@" as 'boxes'
                             ,convert(int,D.bunches) as 'bunches'
                             ,convert(int,D.stemsBunch) as 'stemsBunch'
                             ,convert(numeric(18,2),D.unitCost) as 'cost'

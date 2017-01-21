@@ -385,6 +385,17 @@ namespace BQ
                 p_markCode = value;
             }
         }
-        
+        private Int32 p_pbQty = 0;
+        public Int32 pbQty
+        {
+            get
+            {
+                return p_pbQty;
+            }
+            set
+            {
+                p_pbQty = value;
+            }
+        }
     }
 }
