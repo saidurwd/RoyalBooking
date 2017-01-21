@@ -329,8 +329,25 @@ namespace RoyalBooking
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            DeletePOPB();
+            try
+            {
+                DeletePOPB();
+                Button2_Click(null, null);
+                try
+                {
+                    ReadKSData objLog = new BQ.ReadKSData();
+                    DataTable dt = objLog.ReadDeleteMoveLog();
+                    GenerateExcelAndDownload(dt);
+                }
+                catch (Exception expInner)
+                {
 
+                }
+            }
+            catch (Exception exp)
+            {
+                CreateErrorLog("CustomLogs/LogPrebookDeleteError", exp.ToString());
+            }
             //string _KSToken = "";
             //string _KSDataFrom = "";
             //if (Session["CompanyID"] == null)
@@ -812,9 +829,7 @@ namespace RoyalBooking
                         CreateErrorLog("CustomLogs/LogPrebookDeleteError", sLogFormat + exp.ToString());
                     }
                 }
-                ReadKSData objLog = new BQ.ReadKSData();
-                DataTable dt = objLog.ReadDeleteMoveLog();
-                GenerateExcelAndDownload(dt);
+                
             }
             catch (Exception exp)
             {

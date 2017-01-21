@@ -67,7 +67,6 @@
                                                 <asp:TextBox runat="server" ID="txtNumber" Text='<%#Eval("number") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtprebook" Text='<%#Eval("prebook") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtpoItemId" Text='<%#Eval("poItemId") %>' Style="display: none" />
-
                                                 <asp:TextBox runat="server" ID="txtProductDescription" Text='<%#Eval("productDescription") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtTruckDate" Text='<%#Eval("truckDate") %>' Style="display: none" />
 
@@ -80,10 +79,10 @@
                                         <asp:BoundField DataField="customerName" HeaderText="Customer" SortExpression="customerName" />
                                         <asp:BoundField DataField="number" HeaderText="PO" SortExpression="number" />
                                         <asp:BoundField DataField="prebook" HeaderText="prebook" SortExpression="prebook" />
-                                        <asp:BoundField DataField="vendorName" HeaderText="vendorName" SortExpression="vendorName" />
                                         <asp:BoundField DataField="productDescription" HeaderText="Product" SortExpression="productDescription" ControlStyle-CssClass="hello" />
                                         <asp:BoundField DataField="totalBoxes" HeaderText="totalBoxes" SortExpression="totalBoxes" />
                                         <asp:BoundField DataField="boxType" HeaderText="boxType" SortExpression="boxType" />
+                                        <asp:BoundField DataField="vendorName" HeaderText="vendorName" SortExpression="vendorName" />
                                         <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                                         <asp:BoundField DataField="orderType" HeaderText="Order Type" SortExpression="orderType" />
 
