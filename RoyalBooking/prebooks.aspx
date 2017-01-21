@@ -12,7 +12,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
                     <input class="form-control" id="txtvendor" placeholder="Vendor" type="text" runat="server">
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-3 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group text-right col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-1">
                     PO Date:
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
@@ -22,6 +22,9 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                     <asp:Button ID="Button1" runat="server" Text="Import PO" OnClick="Button1_Click" CssClass="btn btn-primary pull-right btn-block" />
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                    <asp:Button ID="btnImportVA" runat="server" Text="Import VA" CssClass="btn btn-primary pull-right btn-block" />
                 </div>
             </div>
             <div class="row">
