@@ -297,8 +297,9 @@ function deleteConfirm() {
     var result = confirm("Are you sure you want to delete " + percent + "% " + mvProd + " from " + total + " prebooks and according Pos?");
     if (result) {
         return true;
+    } else {
+        return false;
     }
-    return false;
 }
 function js_yyyy_mm_dd_hh_mm_ss(dtDate) {
     //now = new Date();
