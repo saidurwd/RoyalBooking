@@ -10,23 +10,25 @@ namespace BQ
 {
     public class UpdateKSPrebook
     {
-        public void UpdatePrebookDeleteStatus(DC_BQ objBQ, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate)
+        public void UpdatePrebookDeleteStatus(DC_BQ objBQ, Prebooks objPB, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate, string _BatchNo)
         {
-            UpdatePrebookDeleteStatusById(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate);
+            UpdatePrebookDeleteStatusById(objBQ, objPB, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, _BatchNo);
         }
         
-        private void UpdatePrebookDeleteStatusById(DC_BQ objBQ, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate)
+        private void UpdatePrebookDeleteStatusById(DC_BQ objBQ, Prebooks objPB, string DeleteOrMove, string IsSuccess, string NewPrebookId, string NewTruckDate, string _BatchNo)
         {
             string strSQL = @"
                 UPDATE " + objBQ.DataFrom + "_PB_PO_Details SET DeleteStatus=" + IsSuccess + " WHERE prebookItemId=" + objBQ.ProductId + @";
                 INSERT INTO dbo.PB_PO_Details_Delete_Move_log(orderType, stemsBunch, notes, customField1, standingOrder, details_Id, bunches, units, totalBoxes, unitType, carrierName, referenceNumber, poItemId, customerId, lineItemStatus, productDescription, 
                          productId, boxType, customerName, totalUnits, markCode, prebook, unitCost, prebookTruckDate, quantityConfirmed, 
                         carrierId, totalCost, purchaseOrders_Id, prebookItemId, PO_number, id_PO, DeleteStatus, [source], truckDate, 
-                        DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, IsNew)
+                        DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, IsNew, BatchNo, InvoiceNumber, customerIdPB, customerPoNumber, comments, shipToId, unitPrice, markCodePB)
                         SELECT orderType, stemsBunch, notes, customField1, standingOrder, details_Id, bunches, units, totalBoxes, unitType, carrierName, referenceNumber, poItemId, customerId, lineItemStatus, productDescription, 
                          productId, boxType, customerName, totalUnits, markCode, prebook, unitCost, prebookTruckDate, quantityConfirmed, 
                         carrierId, totalCost, purchaseOrders_Id, prebookItemId, PO_number, id_PO, " + IsSuccess + @", '" + objBQ.DataFrom + "',convert(datetime,'" + objBQ.ProcessDay + @"'),
-                        '" + DeleteOrMove + "', " + IsSuccess + ", '" + NewPrebookId + "', '" + NewTruckDate + @"', 1 
+                        '" + DeleteOrMove + "', " + IsSuccess + ", '" + NewPrebookId + "', '" + NewTruckDate + @"', 1, '"+ _BatchNo + @"',
+                        '" + objBQ.InvoiceNumber + "','" + objPB.customerId + "','" + objPB.customerPoNumber + "','" + objPB.comments + @"',
+                        '" + objPB.shipToId + "','" + objPB.unitPrice + "','" + objPB.markCode + @"'
                         FROM " + objBQ.DataFrom + "_PB_PO_Details WHERE prebookItemId=" + objBQ.ProductId + @"";
             string constr = DB_Base.DB_STR;
             SqlConnection con = new SqlConnection(constr);

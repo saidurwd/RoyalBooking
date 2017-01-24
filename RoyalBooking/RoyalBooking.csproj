@@ -117,6 +117,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
+    <Content Include="prebooksLog.aspx" />
     <Content Include="prebooks.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prebooksLog.aspx.cs">
+      <DependentUpon>prebooksLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prebooksLog.aspx.designer.cs">
+      <DependentUpon>prebooksLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="prebooks.aspx.cs">
       <DependentUpon>prebooks.aspx</DependentUpon>
