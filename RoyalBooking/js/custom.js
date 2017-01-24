@@ -290,6 +290,7 @@ $('#single_cal2').daterangepicker({
 }, function (start, end, label) {
     console.log(start.toISOString(), end.toISOString(), label);
 });
+
 function deleteConfirm() {
     var mvProd = $('input:checked').map(function () { return $(this).closest('tr').find('td:eq(6)').text(); }).get().join(', ');
     var total = $('input:checked').length;
@@ -301,6 +302,16 @@ function deleteConfirm() {
         return false;
     }
 }
+
+function moveConfirm() {
+    var result = confirm("Are you sure you want to move?");
+    if (result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function js_yyyy_mm_dd_hh_mm_ss(dtDate) {
     //now = new Date();
     now = dtDate;
