@@ -361,17 +361,17 @@ namespace RoyalBooking
             try
             {
                 DeletePOPB();
-                //Button2_Click(null, null);
-                //try
-                //{
-                //    ReadKSData objLog = new BQ.ReadKSData();
-                //    DataTable dt = objLog.ReadDeleteMoveLog();
-                //    GenerateExcelAndDownload(dt);
-                //}
-                //catch (Exception expInner)
-                //{
+                Button2_Click(null, null);
+                try
+                {
+                    ReadKSData objLog = new BQ.ReadKSData();
+                    DataTable dt = objLog.ReadDeleteMoveLog();
+                    GenerateExcelAndDownload(dt);
+                }
+                catch (Exception expInner)
+                {
 
-                //}
+                }
             }
             catch (Exception exp)
             {
@@ -478,6 +478,8 @@ namespace RoyalBooking
             string strBatchNo = DateTime.Now.ToString("yyyyMMddHHmmss");
             string _KSToken = "";
             string _KSDataFrom = "";
+            string Percent = txtMovePercent.Value;
+            if (Percent == "") { Percent = "0"; }
             if (Session["CompanyID"] == null)
             {
                 return;
@@ -892,7 +894,7 @@ namespace RoyalBooking
                         CreateErrorLog("CustomLogs/LogPrebookDeleteError", sLogFormat + exp.ToString());
                     }
                 }
-                Response.Redirect("prebooksLog.aspx?BatchNo="+strBatchNo);
+                //Response.Redirect("prebooksLog.aspx?BatchNo="+strBatchNo);
             }
             catch (Exception exp)
             {

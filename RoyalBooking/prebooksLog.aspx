@@ -22,7 +22,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="" ControlStyle-Width="5%">
                                             <ItemTemplate>
-                                                <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" />
+                                                <asp:CheckBox runat="server" ID="chkRow" CssClass="flat" Style="display: none"/>
                                                 <asp:TextBox runat="server" ID="txtKeyField" Text='<%#Eval("Id") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtprebookItemId" Text='<%#Eval("prebookItemId") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtNumber" Text='<%#Eval("number") %>' Style="display: none" />

@@ -53,182 +53,182 @@ namespace RoyalBooking
 
             //ImportPrebooks(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
 
-            if (Session["CompanyID"] == null)
-            {
-                return;
-            }
-            string companyID = Session["CompanyID"].ToString();
-            if (companyID == "1")
-            {
-                ImportLastDaysPOData(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
-            }
-            else if (companyID == "2")
-            {
-                ImportLastDaysPOData(BQ.DB_Base.KSRFIInternationalToken, BQ.DB_Base.KSRFIInternationalDataFrom);
-            }
-            else if (companyID == "3")
-            {
-                ImportLastDaysPOData(BQ.DB_Base.KSGmbHToken, BQ.DB_Base.KSGmbHDataFrom);
-            }
-            else
-            {
-                ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
-            }
+            //if (Session["CompanyID"] == null)
+            //{
+            //    return;
+            //}
+            //string companyID = Session["CompanyID"].ToString();
+            //if (companyID == "1")
+            //{
+            //    ImportLastDaysPOData(BQ.DB_Base.KSRFIDomesticToken, BQ.DB_Base.KSRFIDomesticDataFrom);
+            //}
+            //else if (companyID == "2")
+            //{
+            //    ImportLastDaysPOData(BQ.DB_Base.KSRFIInternationalToken, BQ.DB_Base.KSRFIInternationalDataFrom);
+            //}
+            //else if (companyID == "3")
+            //{
+            //    ImportLastDaysPOData(BQ.DB_Base.KSGmbHToken, BQ.DB_Base.KSGmbHDataFrom);
+            //}
+            //else
+            //{
+            //    ImportLastDaysPOData(BQ.DB_Base.KSDemoToken, BQ.DB_Base.KSDemoDataFrom);
+            //}
 
         }
-        protected void ImportLastDaysPOData(string _KSToken, string _DataFrom)
-        {
+        //protected void ImportLastDaysPOData(string _KSToken, string _DataFrom)
+        //{
 
 
-            string FromDate = txtDateFrom.Value;// "12/25/2016";
-            string ToDate = txtDateTo.Value; //"12/30/2016";
-            //try
-            //{
-            BQ.DC_BQ objBQ = new BQ.DC_BQ();
-            objBQ.KSToken = _KSToken;
-            objBQ.DataFrom = _DataFrom;
-            objBQ.CallFrom = BQ.DB_Base.Call_From_Monthly_Sales;
+        //    string FromDate = txtDateFrom.Value;// "12/25/2016";
+        //    string ToDate = txtDateTo.Value; //"12/30/2016";
+        //    //try
+        //    //{
+        //    BQ.DC_BQ objBQ = new BQ.DC_BQ();
+        //    objBQ.KSToken = _KSToken;
+        //    objBQ.DataFrom = _DataFrom;
+        //    objBQ.CallFrom = BQ.DB_Base.Call_From_Monthly_Sales;
 
-            string conString = BQ.DB_Base.DB_STR;
-            string strSQL = "";
-            strSQL = @"
-        	select replace(convert(varchar(10),date," + BQ.DB_Base.BQDataRegion + @"),'/','-') truckdate2 
-            from [dbo].[DateBackbone](convert(datetime,'" + FromDate + @"'," + BQ.DB_Base.BQDataRegion + @"), convert(datetime,'" + ToDate + @"'," + BQ.DB_Base.BQDataRegion + @"));";
+        //    string conString = BQ.DB_Base.DB_STR;
+        //    string strSQL = "";
+        //    strSQL = @"
+        //	select replace(convert(varchar(10),date," + BQ.DB_Base.BQDataRegion + @"),'/','-') truckdate2 
+        //    from [dbo].[DateBackbone](convert(datetime,'" + FromDate + @"'," + BQ.DB_Base.BQDataRegion + @"), convert(datetime,'" + ToDate + @"'," + BQ.DB_Base.BQDataRegion + @"));";
 
-            SqlConnection con = new SqlConnection(conString);
-            con.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
-            DataTable dtdate = new DataTable();
+        //    SqlConnection con = new SqlConnection(conString);
+        //    con.Open();
+        //    SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+        //    DataTable dtdate = new DataTable();
 
-            adpt.Fill(dtdate);
-            con.Close();
-            string truckdate2 = "";
+        //    adpt.Fill(dtdate);
+        //    con.Close();
+        //    string truckdate2 = "";
 
-            BQ.ImportKSPO objK = new BQ.ImportKSPO();
-            objK.DeleteAll(objBQ);
-            if (dtdate.Rows.Count > 0)
-            {
-                for (int i = 0; i < dtdate.Rows.Count; i++)
-                {
-                    truckdate2 = dtdate.Rows[i]["truckdate2"].ToString();
-                    objBQ.FromDate = truckdate2;
-                    objBQ.ToDate = truckdate2;
-                    objBQ.ProcessDay = truckdate2;
-
-
-                    objK = new BQ.ImportKSPO();
-                    objBQ.OrderStatus = "Confirmed by Farm";
-                    DataSet ds = objK.ImportKSInvoideDataForAzure(objBQ);
-
-                    objK = new BQ.ImportKSPO();
-                    objBQ.OrderStatus = "Approved";
-                    ds = objK.ImportKSInvoideDataForAzure(objBQ);
-
-                    objK = new BQ.ImportKSPO();
-                    objBQ.OrderStatus = "Pending Approval";
-                    ds = objK.ImportKSInvoideDataForAzure(objBQ);
+        //    BQ.ImportKSPO objK = new BQ.ImportKSPO();
+        //    objK.DeleteAll(objBQ);
+        //    if (dtdate.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dtdate.Rows.Count; i++)
+        //        {
+        //            truckdate2 = dtdate.Rows[i]["truckdate2"].ToString();
+        //            objBQ.FromDate = truckdate2;
+        //            objBQ.ToDate = truckdate2;
+        //            objBQ.ProcessDay = truckdate2;
 
 
-                    //objK.ImportKSInvoideDataForAzure(objBQ);
+        //            objK = new BQ.ImportKSPO();
+        //            objBQ.OrderStatus = "Confirmed by Farm";
+        //            DataSet ds = objK.ImportKSInvoideDataForAzure(objBQ);
 
-                    //string validationfile = "";
-                    //validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
-                    //validationfile = ExportToExcel(ds.Tables[2], "details");
+        //            objK = new BQ.ImportKSPO();
+        //            objBQ.OrderStatus = "Approved";
+        //            ds = objK.ImportKSInvoideDataForAzure(objBQ);
 
-                    //if (ds.Tables.Contains("breakdowns"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
-                    //}
-                    //if (ds.Tables.Contains("boxes"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
-                    //}
-                    //if (ds.Tables.Contains("customFields"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
-                    //}
-                    //if (ds.Tables.Contains("vendorAvailabilityDetails"))
-                    //{
-                    //    validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
-                    //}
-                }
-            }
-            //}
-            //catch (Exception exp)
-            //{
-            //    sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
-            //    CreateErrorLog("CustomLogs/ErrorLog", sLogFormat + " : " + FromDate+ " : " + ToDate + " : " + _DataFrom);
-            //    CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
-            //}
-            //finally
-            //{
+        //            objK = new BQ.ImportKSPO();
+        //            objBQ.OrderStatus = "Pending Approval";
+        //            ds = objK.ImportKSInvoideDataForAzure(objBQ);
 
-            //}
-        }
-        protected void ImportPrebooks(string _KSToken, string _DataFrom)
-        {
 
-            string FromDate = txtDateFrom.Value;// "12/25/2016";
-            string ToDate = txtDateTo.Value; //"12/30/2016";
-            //try
-            //{
-            BQ.DC_BQ objBQ = new BQ.DC_BQ();
-            objBQ.KSToken = _KSToken;
-            objBQ.DataFrom = _DataFrom;
-            objBQ.CallFrom = BQ.DB_Base.Call_From_Import_Prebooks_Date_Duration;
+        //            //objK.ImportKSInvoideDataForAzure(objBQ);
 
-            string conString = BQ.DB_Base.DB_STR;
-            string strSQL = "";
-            strSQL = @"
-        	select replace(convert(varchar(10),date," + BQ.DB_Base.BQDataRegion + @"),'/','-') truckdate2 
-            from [dbo].[DateBackbone](convert(datetime,'" + FromDate + @"'," + BQ.DB_Base.BQDataRegion + @"), convert(datetime,'" + ToDate + @"'," + BQ.DB_Base.BQDataRegion + @"));";
+        //            //string validationfile = "";
+        //            //validationfile = ExportToExcel(ds.Tables[1], "purchaseOrders");
+        //            //validationfile = ExportToExcel(ds.Tables[2], "details");
 
-            SqlConnection con = new SqlConnection(conString);
-            con.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
-            DataTable dtdate = new DataTable();
+        //            //if (ds.Tables.Contains("breakdowns"))
+        //            //{
+        //            //    validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+        //            //}
+        //            //if (ds.Tables.Contains("boxes"))
+        //            //{
+        //            //    validationfile = ExportToExcel(ds.Tables["boxes"], "boxes");
+        //            //}
+        //            //if (ds.Tables.Contains("customFields"))
+        //            //{
+        //            //    validationfile = ExportToExcel(ds.Tables["customFields"], "customFields");
+        //            //}
+        //            //if (ds.Tables.Contains("vendorAvailabilityDetails"))
+        //            //{
+        //            //    validationfile = ExportToExcel(ds.Tables["vendorAvailabilityDetails"], "vendorAvailabilityDetails");
+        //            //}
+        //        }
+        //    }
+        //    //}
+        //    //catch (Exception exp)
+        //    //{
+        //    //    sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+        //    //    CreateErrorLog("CustomLogs/ErrorLog", sLogFormat + " : " + FromDate+ " : " + ToDate + " : " + _DataFrom);
+        //    //    CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
+        //    //}
+        //    //finally
+        //    //{
 
-            adpt.Fill(dtdate);
-            con.Close();
-            string truckdate2 = "";
-            BQ.ImportKSPrebooks objK = new BQ.ImportKSPrebooks();
-            objK.DeleteDataAll(objBQ);
+        //    //}
+        //}
+        //protected void ImportPrebooks(string _KSToken, string _DataFrom)
+        //{
 
-            if (dtdate.Rows.Count > 0)
-            {
-                for (int i = 0; i < dtdate.Rows.Count; i++)
-                {
-                    truckdate2 = dtdate.Rows[i]["truckdate2"].ToString();
-                    objBQ.FromDate = truckdate2;
-                    objBQ.ToDate = truckdate2;
-                    objBQ.ProcessDay = truckdate2;
+        //    string FromDate = txtDateFrom.Value;// "12/25/2016";
+        //    string ToDate = txtDateTo.Value; //"12/30/2016";
+        //    //try
+        //    //{
+        //    BQ.DC_BQ objBQ = new BQ.DC_BQ();
+        //    objBQ.KSToken = _KSToken;
+        //    objBQ.DataFrom = _DataFrom;
+        //    objBQ.CallFrom = BQ.DB_Base.Call_From_Import_Prebooks_Date_Duration;
 
-                    objK = new BQ.ImportKSPrebooks();
-                    DataSet ds = objK.ImportKSPrebooksDataForAzure(objBQ);
+        //    string conString = BQ.DB_Base.DB_STR;
+        //    string strSQL = "";
+        //    strSQL = @"
+        //	select replace(convert(varchar(10),date," + BQ.DB_Base.BQDataRegion + @"),'/','-') truckdate2 
+        //    from [dbo].[DateBackbone](convert(datetime,'" + FromDate + @"'," + BQ.DB_Base.BQDataRegion + @"), convert(datetime,'" + ToDate + @"'," + BQ.DB_Base.BQDataRegion + @"));";
 
-                    string validationfile = "";
-                    validationfile = ExportToExcel(ds.Tables[1], "prebooks");
-                    validationfile = ExportToExcel(ds.Tables[2], "details");
+        //    SqlConnection con = new SqlConnection(conString);
+        //    con.Open();
+        //    SqlDataAdapter adpt = new SqlDataAdapter(strSQL, con);
+        //    DataTable dtdate = new DataTable();
 
-                    if (ds.Tables.Contains("breakdowns"))
-                    {
-                        validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
-                    }
+        //    adpt.Fill(dtdate);
+        //    con.Close();
+        //    string truckdate2 = "";
+        //    BQ.ImportKSPrebooks objK = new BQ.ImportKSPrebooks();
+        //    objK.DeleteDataAll(objBQ);
 
-                }
-            }
-            //}
-            //catch (Exception exp)
-            //{
-            //    sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
-            //    CreateErrorLog("CustomLogs/ErrorLog", sLogFormat + " : " + FromDate+ " : " + ToDate + " : " + _DataFrom);
-            //    CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
-            //}
-            //finally
-            //{
+        //    if (dtdate.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dtdate.Rows.Count; i++)
+        //        {
+        //            truckdate2 = dtdate.Rows[i]["truckdate2"].ToString();
+        //            objBQ.FromDate = truckdate2;
+        //            objBQ.ToDate = truckdate2;
+        //            objBQ.ProcessDay = truckdate2;
 
-            //}
-        }
+        //            objK = new BQ.ImportKSPrebooks();
+        //            DataSet ds = objK.ImportKSPrebooksDataForAzure(objBQ);
+
+        //            string validationfile = "";
+        //            validationfile = ExportToExcel(ds.Tables[1], "prebooks");
+        //            validationfile = ExportToExcel(ds.Tables[2], "details");
+
+        //            if (ds.Tables.Contains("breakdowns"))
+        //            {
+        //                validationfile = ExportToExcel(ds.Tables["breakdowns"], "breakdowns");
+        //            }
+
+        //        }
+        //    }
+        //    //}
+        //    //catch (Exception exp)
+        //    //{
+        //    //    sLogFormat = " ======== " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ======== ";
+        //    //    CreateErrorLog("CustomLogs/ErrorLog", sLogFormat + " : " + FromDate+ " : " + ToDate + " : " + _DataFrom);
+        //    //    CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
+        //    //}
+        //    //finally
+        //    //{
+
+        //    //}
+        //}
 
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -291,30 +291,30 @@ namespace RoyalBooking
         
         protected void ReadKSPrebooks(string _KSToken, string _DataFrom)
         {
-            try
-            {
-                BQ.DC_BQ objBQ = new BQ.DC_BQ();
-                objBQ.KSToken = _KSToken;
-                objBQ.SearchSrting = txtdescription.Value;
-                objBQ.FromDate = txtDateFrom.Value;
-                objBQ.ToDate = txtDateTo.Value;
-                objBQ.DataFrom = _DataFrom;
-                objBQ.vendorName = txtvendor.Value;
-                objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
+            //try
+            //{
+            //    BQ.DC_BQ objBQ = new BQ.DC_BQ();
+            //    objBQ.KSToken = _KSToken;
+            //    objBQ.SearchSrting = txtdescription.Value;
+            //    objBQ.FromDate = txtDateFrom.Value;
+            //    objBQ.ToDate = txtDateTo.Value;
+            //    objBQ.DataFrom = _DataFrom;
+            //    objBQ.vendorName = txtvendor.Value;
+            //    objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
 
-                ReadKSData objK = new BQ.ReadKSData();
-                DataSet ds = objK.ReadKSPrebooks(objBQ);
-                GridView1.DataSource = ds.Tables[0];
-                GridView1.DataBind();
-            }
-            catch (Exception exp)
-            {
-                CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
-            }
-            finally
-            {
+            //    ReadKSData objK = new BQ.ReadKSData();
+            //    DataSet ds = objK.ReadKSPrebooks(objBQ);
+            //    GridView1.DataSource = ds.Tables[0];
+            //    GridView1.DataBind();
+            //}
+            //catch (Exception exp)
+            //{
+            //    CreateErrorLog("CustomLogs/ErrorLog", exp.ToString());
+            //}
+            //finally
+            //{
 
-            }
+            //}
         }
         protected void ReadKSPrebooksLog(string _KSToken, string _DataFrom, string _BatchNo)
         {
@@ -322,12 +322,12 @@ namespace RoyalBooking
             {
                 BQ.DC_BQ objBQ = new BQ.DC_BQ();
                 objBQ.KSToken = _KSToken;
-                objBQ.SearchSrting = txtdescription.Value;
-                objBQ.FromDate = txtDateFrom.Value;
-                objBQ.ToDate = txtDateTo.Value;
+                //objBQ.SearchSrting = txtdescription.Value;
+                //objBQ.FromDate = txtDateFrom.Value;
+                //objBQ.ToDate = txtDateTo.Value;
                 objBQ.DataFrom = _DataFrom;
-                objBQ.vendorName = txtvendor.Value;
-                objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
+                //objBQ.vendorName = txtvendor.Value;
+                //objBQ.OrderStatus = ddOrderType.SelectedItem.Value.ToString();
 
                 ReadKSData objK = new BQ.ReadKSData();
                 DataSet ds = objK.ReadKSPrebooksLog(objBQ, _BatchNo);
@@ -745,7 +745,7 @@ namespace RoyalBooking
             string _KSToken = "";
             string _KSDataFrom = "";
             string pbQty = "0";
-            string Percent = txtPercent.Value;
+            string Percent = "100";// txtPercent.Value;
             if (Percent == "") { Percent = "0"; }
             if (Session["CompanyID"] == null)
             {

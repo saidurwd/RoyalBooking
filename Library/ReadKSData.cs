@@ -287,7 +287,7 @@ namespace BQ
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             INNER JOIN dbo.PB_PO_Details_Delete_Move_log L on L.PO_number=D.PO_number and L.prebookItemId=D.prebookItemId
                             AND L.BatchNo='"+ _BatchNo + @"'
-                            WHERE D.prebookItemId IS NOT NULL --AND IsSuccess = 0
+                            WHERE D.prebookItemId IS NOT NULL AND IsSuccess = 0
                                 --P.shipDate >= convert(datetime,'" + objBQ.FromDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 --AND P.shipDate <= convert(datetime,'" + objBQ.ToDate + @"', " + BQ.DB_Base.BQDataRegion + @") 
                                 --AND P.vendorName like '%" + objBQ.vendorName.Replace("'", "'") + @"%' 

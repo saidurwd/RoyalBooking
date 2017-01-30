@@ -104,6 +104,7 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <button type="button" id="btnMoveModal" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
+                                    <input class="form-control" id="txtMovePercent" placeholder="" type="text" runat="server">
                                 </div>
                             </div>
                         </div>
@@ -138,7 +139,7 @@
                         <div class="clearfix"></div>
                         <hr />
                         <p>
-                            Are you sure you want to move <span id="spnMoveProduct"></span>to the date range <span id="spnDateMoveStart"></span>to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span>prebooks and according Pos?
+                            Are you sure you want to move <span id="spnMoveProduct"></span> to the date range <span id="spnDateMoveStart"></span> to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span> prebooks and according Pos?
                         </p>
                     </div>
                     <div class="modal-footer">
