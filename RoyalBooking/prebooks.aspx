@@ -104,7 +104,6 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <button type="button" id="btnMoveModal" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Move</button>
-                                    <input class="form-control" id="txtMovePercent" placeholder="" type="text" runat="server">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +114,7 @@
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content modal-lg">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Move Prebook</h4>
@@ -125,21 +124,25 @@
                             <div class="col-md-4 col-sm-4 col-xs-12 form-group text-right">
                                 New Date Range:           
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
                                 <asp:TextBox runat="server" ID="txtDateMoveStart" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess3Status3" type="text" />
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess3Status3" class="sr-only">(success)</span>
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                            <div class="col-md-3 col-sm-3 col-xs-12 form-group">
                                 <asp:TextBox runat="server" ID="txtDateMoveEnd" class="form-control has-feedback-left hasDatePicker" placeholder="Start" aria-describedby="inputSuccess4Status4" type="text" />
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 <span id="inputSuccess4Status4" class="sr-only">(success)</span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <input class="form-control" id="txtMovePercent" placeholder="" type="text" runat="server">
+                                <span class="fa fa-percent form-control-feedback right" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <hr />
                         <p>
-                            Are you sure you want to move <span id="spnMoveProduct"></span> to the date range <span id="spnDateMoveStart"></span> to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span> prebooks and according Pos?
+                            Are you sure you want to move <span id="spnMoveProduct"></span>to the date range <span id="spnDateMoveStart"></span>to <span id="spnDateMoveEnd"></span>, from the <span id="noOfChecked"></span>prebooks and according Pos?
                         </p>
                     </div>
                     <div class="modal-footer">
