@@ -480,6 +480,7 @@ namespace RoyalBooking
             string _KSDataFrom = "";
             string Percent = txtMovePercent.Value;
             if (Percent == "") { Percent = "0"; }
+            string pbQty = "0";
             if (Session["CompanyID"] == null)
             {
                 return;
@@ -571,7 +572,11 @@ namespace RoyalBooking
                                         DataTable dtPBD = dsPrebook.Tables["details"].Select("prebookItemId=" + _txtprebookItemId.Text + "").CopyToDataTable();
                                         string _unitPrice = dtPBD.Rows[0]["unitPrice"].ToString(); ;
                                         objPB.unitPrice = _unitPrice;
-                                        objPB.pbQty = 0;
+                                        
+                                        pbQty = dtPBD.Rows[0]["totalBoxes"].ToString();
+                                        pbQty = (Int32.Parse(pbQty) * Int32.Parse(Percent) / 100).ToString();
+                                        objPB.pbQty = Int32.Parse(pbQty);
+
                                         if (dsPrebook.Tables.Contains("breakdowns"))
                                         {
                                             try

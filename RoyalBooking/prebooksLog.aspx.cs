@@ -288,7 +288,7 @@ namespace RoyalBooking
             }
 
         }
-        
+
         protected void ReadKSPrebooks(string _KSToken, string _DataFrom)
         {
             //try
@@ -561,14 +561,14 @@ namespace RoyalBooking
                         CheckBox _chkRow = gr.FindControl("chkRow") as CheckBox;
                         //if (_chkRow.Checked == true)
                         //{
-                            TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox; //PO ID
-                            TextBox _txtprebook = gr.FindControl("txtprebook") as TextBox; //Prebook ID
-                            TextBox _txtprebookItemId = gr.FindControl("txtprebookItemId") as TextBox; //Prebook Item Id
-                            TextBox _txtpoItemId = gr.FindControl("txtpoItemId") as TextBox; //PO Item Id
-                            TextBox _txtNumber = gr.FindControl("txtNumber") as TextBox; //PO Number
-                            TextBox _txtProductDescription = gr.FindControl("txtProductDescription") as TextBox;
-                            TextBox _txtTruckDate = gr.FindControl("txtTruckDate") as TextBox;
-                            TextBox _txtNewTruckDate = gr.FindControl("txtNewTruckDate") as TextBox;
+                        TextBox _txtRefNo = gr.FindControl("txtKeyField") as TextBox; //PO ID
+                        TextBox _txtprebook = gr.FindControl("txtprebook") as TextBox; //Prebook ID
+                        TextBox _txtprebookItemId = gr.FindControl("txtprebookItemId") as TextBox; //Prebook Item Id
+                        TextBox _txtpoItemId = gr.FindControl("txtpoItemId") as TextBox; //PO Item Id
+                        TextBox _txtNumber = gr.FindControl("txtNumber") as TextBox; //PO Number
+                        TextBox _txtProductDescription = gr.FindControl("txtProductDescription") as TextBox;
+                        TextBox _txtTruckDate = gr.FindControl("txtTruckDate") as TextBox;
+                        TextBox _txtNewTruckDate = gr.FindControl("txtNewTruckDate") as TextBox;
 
                         TextBox _txtInvoiceNumber = gr.FindControl("txtInvoiceNumber") as TextBox;
                         TextBox _txtcustomerIdPB = gr.FindControl("txtcustomerIdPB") as TextBox;
@@ -577,22 +577,23 @@ namespace RoyalBooking
                         TextBox _txtshipToId = gr.FindControl("txtshipToId") as TextBox;
                         TextBox _txtunitPrice = gr.FindControl("txtunitPrice") as TextBox;
                         TextBox _txtmarkCodePB = gr.FindControl("txtmarkCodePB") as TextBox;
+                        TextBox _txtpbQty = gr.FindControl("txtpbQty") as TextBox;
 
-                            BQ.DC_BQ objBQ = new BQ.DC_BQ();
-                            objBQ.KSToken = _KSToken;
-                            objBQ.DataFrom = _KSDataFrom;
-                            objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
-                            objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
-                            objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
+                        BQ.DC_BQ objBQ = new BQ.DC_BQ();
+                        objBQ.KSToken = _KSToken;
+                        objBQ.DataFrom = _KSDataFrom;
+                        objBQ.PrebooksId = Int32.Parse(_txtprebook.Text);
+                        objBQ.ProductId = Int32.Parse(_txtprebookItemId.Text); //Prebook Item Id
+                        objBQ.poItemId = Int32.Parse(_txtpoItemId.Text); //PO Item Id
 
-                            BQ.Prebooks objPB = new BQ.Prebooks();
+                        BQ.Prebooks objPB = new BQ.Prebooks();
 
-                            objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
-                            
-                            //DateTime TruckDate = GetCorrespondingWeekDay(Convert.ToDateTime(txtDateMoveStart.Text), Convert.ToDateTime(txtDateMoveEnd.Text), Convert.ToDateTime(_txtTruckDate.Text));
-                            //objBQ.ProcessDay = TruckDate.ToString("yyyy-MM-dd");
+                        objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
 
-                            objBQ.ProcessDay = _txtNewTruckDate.Text;
+                        //DateTime TruckDate = GetCorrespondingWeekDay(Convert.ToDateTime(txtDateMoveStart.Text), Convert.ToDateTime(txtDateMoveEnd.Text), Convert.ToDateTime(_txtTruckDate.Text));
+                        //objBQ.ProcessDay = TruckDate.ToString("yyyy-MM-dd");
+
+                        objBQ.ProcessDay = _txtNewTruckDate.Text;
 
                         objBQ.InvoiceNumber = _txtInvoiceNumber.Text;
                         objPB.customerId = _txtcustomerIdPB.Text;
@@ -601,7 +602,7 @@ namespace RoyalBooking
                         objPB.shipToId = _txtshipToId.Text;
                         objPB.unitPrice = _txtunitPrice.Text;
                         objPB.markCode = _txtmarkCodePB.Text;
-
+                        objPB.pbQty = Int32.Parse(_txtpbQty.Text);
                         //return;
 
                         //ImportKSPrebooks objIP = new ImportKSPrebooks();
@@ -669,55 +670,55 @@ namespace RoyalBooking
                         //{
                         //Create Prebook
                         CreateKSPrebooks objCreate = new BQ.CreateKSPrebooks();
-                                    DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ, objPB);
-                                    //DataSet dsCreate = objCreate.CreateKSPrebooksByIdVA(objBQ, objPB);
-                                    
-                                    if (dsCreate.Tables[0].Rows[0]["status"].ToString() == "1")
-                                    {
-                                        string NewPrebookId = dsCreate.Tables[0].Rows[0]["prebookId"].ToString();
-                                        string NewPrebookNo = dsCreate.Tables[0].Rows[0]["prebookNumber"].ToString();
-                                        string NewTruckDate = objBQ.ProcessDay;
-                                        //----------------Update-----------------
-                                        string DeleteOrMove = "Delete and Move: Success";
-                                        string IsSuccess = "1";
-                                        //Update Database
-                                        objUpdate = new BQ.UpdateKSPrebook();
-                                        objUpdate.UpdatePrebookDeleteStatus(objBQ, objPB, DeleteOrMove, IsSuccess, NewPrebookNo, NewTruckDate, strBatchNo);
-                                        //----------------Update-----------------
-                                    }
-                                    else
-                                    {
-                                        string DeleteOrMove = "Delete and Move: Delete Success, Move fail";
-                                        string IsSuccess = "0";
-                                        string NewPrebookId = "";
-                                        string NewTruckDate = "";
-                                        //Update Database
-                                        objUpdate = new BQ.UpdateKSPrebook();
-                                        objUpdate.UpdatePrebookDeleteStatus(objBQ, objPB, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
-                                    }
-                                //}
-                                //else
-                                //{
-                                //    string DeleteOrMove = "Delete and Move: All fail";
-                                //    string IsSuccess = "0";
-                                //    string NewPrebookId = "";
-                                //    string NewTruckDate = "";
-                                //    //Update Database
-                                //    objUpdate = new BQ.UpdateKSPrebook();
-                                //    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
-                                //}
-                                CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + dsCreate.Tables[0].Rows[0][0].ToString());
-                            //}
-                            //else
-                            //{
-                            //    string DeleteOrMove = "Delete and Move: Getting old Prebook data fail";
-                            //    string IsSuccess = "0";
-                            //    string NewPrebookId = "";
-                            //    string NewTruckDate = "";
-                            //    //Update Database
-                            //    objUpdate = new BQ.UpdateKSPrebook();
-                            //    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
-                            //}
+                        DataSet dsCreate = objCreate.CreateKSPrebooksById(objBQ, objPB);
+                        //DataSet dsCreate = objCreate.CreateKSPrebooksByIdVA(objBQ, objPB);
+
+                        if (dsCreate.Tables[0].Rows[0]["status"].ToString() == "1")
+                        {
+                            string NewPrebookId = dsCreate.Tables[0].Rows[0]["prebookId"].ToString();
+                            string NewPrebookNo = dsCreate.Tables[0].Rows[0]["prebookNumber"].ToString();
+                            string NewTruckDate = objBQ.ProcessDay;
+                            //----------------Update-----------------
+                            string DeleteOrMove = "Delete and Move: Success";
+                            string IsSuccess = "1";
+                            //Update Database
+                            objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ, objPB, DeleteOrMove, IsSuccess, NewPrebookNo, NewTruckDate, strBatchNo);
+                            //----------------Update-----------------
+                        }
+                        else
+                        {
+                            string DeleteOrMove = "Delete and Move: Delete Success, Move fail";
+                            string IsSuccess = "0";
+                            string NewPrebookId = "";
+                            string NewTruckDate = "";
+                            //Update Database
+                            objUpdate = new BQ.UpdateKSPrebook();
+                            objUpdate.UpdatePrebookDeleteStatus(objBQ, objPB, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
+                        }
+                        //}
+                        //else
+                        //{
+                        //    string DeleteOrMove = "Delete and Move: All fail";
+                        //    string IsSuccess = "0";
+                        //    string NewPrebookId = "";
+                        //    string NewTruckDate = "";
+                        //    //Update Database
+                        //    objUpdate = new BQ.UpdateKSPrebook();
+                        //    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
+                        //}
+                        CreateErrorLog("CustomLogs/LogPrebookDeleteItems", sLogFormat + " Number: " + _txtNumber.Text + " - Product: " + _txtProductDescription.Text + "  - Data From: " + objBQ.DataFrom + "  - API Message: " + dsCreate.Tables[0].Rows[0][0].ToString());
+                        //}
+                        //else
+                        //{
+                        //    string DeleteOrMove = "Delete and Move: Getting old Prebook data fail";
+                        //    string IsSuccess = "0";
+                        //    string NewPrebookId = "";
+                        //    string NewTruckDate = "";
+                        //    //Update Database
+                        //    objUpdate = new BQ.UpdateKSPrebook();
+                        //    objUpdate.UpdatePrebookDeleteStatus(objBQ, DeleteOrMove, IsSuccess, NewPrebookId, NewTruckDate, strBatchNo);
+                        //}
 
                         //}//Check box
                     }
@@ -725,7 +726,7 @@ namespace RoyalBooking
                     {
                         CreateErrorLog("CustomLogs/LogPrebookMoveError", sLogFormat + exp.ToString());
                     }
-               } 
+                }
                 ReadKSData objLog = new BQ.ReadKSData();
                 DataTable dt = objLog.ReadDeleteMoveLog();
                 GenerateExcelAndDownload(dt);
@@ -801,7 +802,7 @@ namespace RoyalBooking
                             BQ.Prebooks objPB = new BQ.Prebooks();
 
                             objBQ.SearchSrting = _txtProductDescription.Text; //As Product Description
-                            
+
                             // get date from previous prebook date
                             objBQ.ProcessDay = _txtTruckDate.Text;
 
@@ -845,9 +846,9 @@ namespace RoyalBooking
 
                                         objPB.unitPrice = _unitPrice;
                                         pbQty = dtPBD.Rows[0]["totalBoxes"].ToString();
-                                        pbQty =(Int32.Parse(pbQty) * Int32.Parse(Percent) / 100).ToString();
+                                        pbQty = (Int32.Parse(pbQty) * Int32.Parse(Percent) / 100).ToString();
                                         objPB.pbQty = Int32.Parse(pbQty);
-                                        
+
                                         if (dsPrebook.Tables.Contains("breakdowns"))
                                         {
                                             try
@@ -932,7 +933,7 @@ namespace RoyalBooking
                         CreateErrorLog("CustomLogs/LogPrebookDeleteError", sLogFormat + exp.ToString());
                     }
                 }
-                
+
             }
             catch (Exception exp)
             {

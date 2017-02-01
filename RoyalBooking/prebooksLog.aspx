@@ -39,6 +39,8 @@
                                                 <asp:TextBox runat="server" ID="txtshipToId" Text='<%#Eval("shipToId") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtunitPrice" Text='<%#Eval("unitPrice") %>' Style="display: none" />
                                                 <asp:TextBox runat="server" ID="txtmarkCodePB" Text='<%#Eval("markCodePB") %>' Style="display: none" />
+                                                <asp:TextBox runat="server" ID="txtpbQty" Text='<%#Eval("pbQty") %>' Style="display: none" />
+                                                
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="5%" />
                                             <HeaderStyle HorizontalAlign="Center" Width="5%" />

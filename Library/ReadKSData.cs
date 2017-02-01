@@ -282,7 +282,7 @@ namespace BQ
                             ELSE '' END orderType,
                             P.vendorName, CONVERT(INT, D.totalBoxes) totalBoxes, D.boxType, L.DeleteOrMove 'Action Status', L.NewTruckDate,
                             L.InvoiceNumber, L.customerIdPB, L.customerPoNumber,
-                            L.comments, L.shipToId, L.unitPrice, L.markCodePB
+                            L.comments, L.shipToId, L.unitPrice, L.markCodePB, L.pbQty
                             FROM dbo." + objBQ.DataFrom + @"_PB_PO_PurchaseOrders P
                             INNER JOIN dbo." + objBQ.DataFrom + @"_PB_PO_Details D on P.number=D.PO_number
                             INNER JOIN dbo.PB_PO_Details_Delete_Move_log L on L.PO_number=D.PO_number and L.prebookItemId=D.prebookItemId
